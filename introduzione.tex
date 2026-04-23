@@ -1,0 +1,88 @@
+\section{Introduzione al corso}
+La prima parte che trattiamo è quella più ingegneristica, un primo svicolamento che 
+si adopera dai metodi computazionali classici che sono rigorosi.
+Laddove abbiamo gli strumenti adonei per ottenere ottimi risultati usiamo questi.
+La natura dei problemi può essere non lineare per cui il calcolo rigoroso è troppo 
+dispendioso o impossibile da applicare. Si tentano strade alternative (quando 
+la risposta rigorosa è nota per aver un criterio di valutazione).\\
+
+La fonte primaria ispiratrice della computational intelligence. Nasce come proposta
+da un iraniano Zadeh, che propone la logica fuzzy, in cui diceva ottimi risultati potevano
+essere ottenuti da singole applicazioni.
+
+Il corso si concentra sulla parte più legata a come adoperare in alcuni contesti un 
+tipo di ia piuttosto che un altro.
+
+Tecniche di pre processing dei dati.
+La flessibilità di ia e come adoperarla in contesti diversi.
+Tutte le varie tecniche vengono adoperate e apprezzate nei vari contesti.
+
+Faremo delle simulazioni con Python. Chiameremo l'ia e gli chiederemo di fare cose, 
+in modo che ci restituisce un risultato.
+
+Vedremo come trasformare un segnale musicale in un'immagine.
+
+Fuzzy logic, logica come alternativa alla logica booleana, che è basata su true e false.
+
+L'applicazione che faremo prevalentemente è sul segnale musicale, posso usare protocolli 
+informatici (MIDI Musical Instrument Digital Interface).
+
+Posso dire di spostare il calcolo da uno analitico chiuso a uno soft
+infatti si chiamava soft computing.
+Con il passare del tempo tutte le tecniche di natura biologica e naturale sono state
+inglobate in questo paradigma, che è diventato più ampio.
+
+Quali problemi trattano questi algoritmi evolutivi? Problemi di ottimizzazione o 
+problemi inversi.
+Il problema di ottimizzazione significa che è gestito da equazioni governate da alcuni parametro
+vorrei sapere la configurazione ottima di quei parametri per ottenere una configurazione ottima.
+
+I problemi inversi sono quelli in cui abbiamo un certo numero di dati e vorremmo 
+sapere quale è la configurazione che ha generato quei dati, o che è più vicina 
+a quei dati.
+Ho un modello matematico che mi da per esempio le previsioni del tempo, questo modello
+non è stato attualizzato ai dati che servono a me. All'interno a quelle equazioni
+ci sono dei parametri che sono stati messi in modo generico ma che dovrebbero 
+essere attualizzati.
+Per esempio il modello di una parabola:
+$$y=ax^2+bx+c$$
+Con a, b, c generici ho il modello, poi piego il modello al caso che mi interessa, 
+ovvero cambio i valori di a, b, c in modo da far sì che la parabola approssimi al meglio i dati osservati.
+
+Altri metodi (es. simulated annealing) sono più adatti a problemi di ottimizzazione (esempio lo usano 
+molto i fisici), altri (es. reti neurali) sono più adatti a problemi inversi, ma non è detto che non 
+possano essere usati anche per l'altro tipo di problema.
+
+Tutti questi algoritmi sono stocastici, c'è una componente stocastica in modo da aumentare la 
+capacità di qeuesti algoritmi di performare bene.
+Se uso una determinata funzione per trovare per esempio il minimo di una funzione, 
+potrei essere bloccato in un minimo locale, se invece uso una componente stocastica, 
+posso uscire da questo minimo locale e trovare un minimo globale.
+
+Questi algoritmi vanno visti in funzione delle loro capacità, quindi vanno testati.
+Quale algoritmo va bene per piccoli spazi e quale per grandi spazi.
+
+Le più grandi catetegorie con cui vengono classificate sono:
+grado di esplorazione (exploration) e grado di sfruttamento (exploitation).
+
+La rete neurale è difatto un problema di ottimizzazione.
+La rete neurale dovrebbe emulare il cervello di un vertebrato, ci sono dei dati che 
+vengono presi dall'esterno (banca dati).
+Per esempio ho in input $y=f(x)$, poi prendo questo dati che passa per il neurone di ingresso
+faccio una sfilza di nodi (chiamati neuroni nascosti), l'informazione di input viene
+veicolata dal neurone di ingresso a tutti i neuroni nascosti, viene veicolata in modo tale
+da avere dei pesi diversi, dando luogo a un uscita, queste uscite vengono dati in pasto
+ad altri neuroni di un altro strato nascosto (perché non è nè input nè output).
+Ciascuno di questi passaggi ha un altro peso.
+Tutta questa informazione viene poi convogliata verso il neurone d'uscita ($y$). 
+Quindi tutta la rete è $f(x)$ e in ingresso ho $x$.
+
+Allora provo a mettere i valori sperimentali, all'inizio i pesi sono a caso. Una volta che 
+ho tutti i risulati a caso e so quelli che dovrebbero uscire posso applicare un algoritmo
+di ottimizzazione per minimizzare l'errore. Una volta applicato l'algoritmo riinserisco 
+i valori e itero finché non ottengo i risultati aspettati.
+
+L'insieme dei pesi dei valori sinapsici è lo spazio delle soluzioni.
+
+Reti neurali con memoria (recurrente neural network).
+Reti neurali generative.

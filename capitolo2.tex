@@ -1,0 +1,402 @@
+\section{Neural Network Concepts and Paradigms}
+Le reti neurali sono sistemi artificiali di modelli che derivano dallo studio del sistema nervoso dei 
+vertebrati, in particolare del cervello umano.
+Si usa nell'ambiente dividere la storia delle reti neurali in 3 paradigmi principali:
+\begin{itemize}
+    \item Age of Camelot
+    \item Dark Age
+    \item The Renaissance
+\end{itemize}
+
+\subsection{Age of Camelot}
+Il primo paradigma, chiamato "Age of Camelot", si riferisce al periodo iniziale di sviluppo delle reti neurali,
+che va dagli anni '40 agli anni '60. Durante questo periodo, i ricercatori hanno iniziato a esplorare l'idea di
+creare modelli artificiali ispirati al funzionamento del cervello umano, ma le capacità computazionali e la 
+comprensione del cervello erano ancora limitate, quindi i progressi erano lenti e le applicazioni pratiche erano limitate.\\
+
+Come il dato (stimolo elettrico) viene elaborato da un neurone biologico, così il dato (input) viene elaborato da un neurone artificiale.
+Il neurone artificiale riceve un input, lo elabora attraverso una funzione di attivazione e produce un output.
+
+Nel neurone biologico ci sono il corpo cellulare (soma) che sarebbero i nodi, dendriti che sarebbero gli input, 
+e le sinapsi che sarebbero i pesi, e l'assone che sarebbe l'output.\\
+
+Tutti i segnali input passano attraverso i pesi (che rappresentano le sinapsi) e vengono sommati, e poi passano
+attraverso una funzione di attivazione che determina se il neurone si attiva o meno, producendo un output.\\
+
+Sigmoid é una funzione di attivazione che mappa qualsiasi input in un intervallo compreso tra 0 e 1,
+ReLU é una funzione di attivazione che restituisce 0 per input negativi e restituisce l'input stesso per input positivi,
+e Tanh é una funzione di attivazione che mappa qualsiasi input in un intervallo compreso tra -1 e 1.\\
+
+Peso sinapsico é un valore numerico che rappresenta la forza o l'importanza di una connessione tra due neuroni,
+e viene utilizzato per modulare il segnale che passa attraverso quella connessione. Quindi si aggiornano.\\
+
+Il postulato di Hebb (Hebbian Learning) é una teoria che suggerisce che le connessioni sinaptiche tra i neuroni si rafforzano 
+quando i neuroni coinvolti sono attivi contemporaneamente, e si indeboliscono quando non lo sono.\\
+Questo principio è spesso riassunto con la frase "neuroni che si attivano insieme, si connettono insieme" 
+(in inglese "neurons that fire together, wire together").\\
+
+Long Term Potentiation (LTP) é un processo biologico che si verifica nelle sinapsi del cervello, 
+in cui la forza della connessione tra due neuroni aumenta in modo duraturo dopo che i neuroni sono 
+stati attivati insieme per un certo periodo di tempo.\\
+
+Per la rete neurale artificiale dobbiamo innanzitutto definire una architettura, un modo di tradurre un dato
+capibile dal computer (quindi numerico, codici, sequenze) quella che sará una fotografia.
+
+Regole di apprendimento per aggiornare i pesi, e una funzione di attivazione che ci dice se un neurone si attiva o no.\\
+
+Nel 1943 Warren McCulloch e Walter Pitts pubblicarono un articolo intitolato "A Logical Calculus of the Ideas Immanent in Nervous Activity",
+in cui proposero un modello matematico di neurone artificiale, noto come "neurone di McCulloch-Pitts".
+Questo modello rappresentava un neurone come una unità di elaborazione che riceveva input binari (0 o 1) e produceva 
+un output binario (0 o 1) in base a una funzione di attivazione lineare.\\
+Nel 1957 Frank Rosenblatt sviluppò il "Perceptron", un modello di rete neurale artificiale che 
+poteva essere addestrato a riconoscere pattern semplici. Il Perceptron era in grado di apprendere a classificare
+dati lineari, ma aveva limitazioni significative, come l'incapacità di risolvere problemi non lineari, come il famoso problema XOR.\\
+
+Il Perceptrone fa parte delle supervised ANN (Artificial Neural Networks), ovvero reti neurali che vengono addestrate
+con dati etichettati, in cui ogni input è associato a un output desiderato.\\
+Gli ingressi possono essere 0 o 1 (come nel caso del Perceptron) o possono essere valori continui (come nelle reti neurali più moderne).\\
+
+Il perceptrone usato come logica booleana é un esempio di rete neurale artificiale che può essere utilizzata 
+per implementare funzioni logiche, come AND, OR e NOT, ma non è in grado di implementare funzioni logiche più complesse, 
+come XOR, a causa della sua limitazione nella separazione lineare dei dati.\\
+
+\paragraph{Pseudocodifce per Perceptron learning}
+\begin{verbatim}
+initialize weights w and bias b to small random values
+for each training example (x, y):
+    compute the output: output = activation_function(w * x + b)
+    update the weights and bias:
+        w = w + learning_rate * (y - output) * x
+        b = b + learning_rate * (y - output)
+\end{verbatim}
+
+Nel libro "Perceptrons" del 1969, Marvin Minsky e Seymour Papert analizzarono le limitazioni del Perceptrone,
+sottolineando in particolare la sua incapacità di risolvere il problema XOR. Questo lavoro ebbe un impatto significativo 
+sulla comunità scientifica, portando a una diminuzione dell'interesse per le reti neurali e contribuendo alla fase successiva, 
+nota come "Dark Age".\\
+E' single layer perché ha un solo strato di neuroni, e feedforward perché i dati fluiscono in una sola direzione, 
+dagli input agli output, senza cicli o feedback.\\
+
+L'obiettivo del Perceptrone era quello di trovare un iperpiano che separasse i dati in due classi, 
+ma non era in grado di risolvere problemi non lineari, come il problema XOR, che richiede la separazione di dati 
+che non possono essere divisi da un iperpiano lineare.\\
+Il problema xor é un problema di classificazione in cui i dati sono organizzati in modo tale che non possono 
+essere separati da una linea retta (o iperpiano) in uno spazio bidimensionale.\\
+
+L'idea per risolvere il problema XOR è stata quella di introdurre strati nascosti (hidden layers) nella rete neurale,
+(il -1 proviene dal bias, pesi sinapsici). 
+Questi perceptroni funzionano come elementi che sono in grado di gestire una risposta soddisfacente solo se hanno un allenamento 
+dato da un buon numero di dati, e se hanno un numero di neuroni nascosti sufficienti a rappresentare la complessità del problema.\\
+Prima i dati non erano sufficienti per offrire un allenamento adeguato e poi le capacità computazionali erano limitate, quindi non 
+era possibile costruire reti neurali con un numero sufficiente di strati nascosti e neuroni per risolvere problemi complessi come XOR.\\
+
+La tecnologia ha messo a disposizione ai ricercatori bacini di dati sempre più grandi e capacità computazionali sempre più potenti 
+(visto che ho più dati da calcolare), permettendo lo sviluppo di reti neurali profonde (deep learning) con molti strati nascosti, 
+che sono in grado di risolvere problemi molto complessi e di apprendere rappresentazioni gerarchiche dei dati.\\
+
+Quando la regione è convessa significa che è possibile trovare un punto di minimo globale, mentre quando è non convessa ci possono essere molti minimi locali,
+e quindi è più difficile trovare il minimo globale.\\
+Ogni ingresso è collegato a ogni neurone dello strato nascosto, e ogni neurone dello strato nascosto è collegato a ogni neurone dello strato di output.\\
+
+Il ruolo della funzione di attivazione è quello di introdurre non linearità nel modello, permettendo alla rete neurale di 
+apprendere e rappresentare relazioni complesse tra i dati.\\
+
+Possibili funzioni di attivazione: 
+\begin{itemize}
+    \item Unit Step Function: restituisce 1 se l'input è maggiore di una soglia, altrimenti restituisce 0.
+    \item Sigmoid Function: restituisce un valore compreso tra 0 e 1
+    \item Linear Function: restituisce l'input stesso, senza modifiche
+    \item ReLU (Rectified Linear Unit): restituisce 0 per input negativi e poi è lineare per input positivi
+    \item Tanh (Hyperbolic Tangent): restituisce un valore compreso tra -1 e 1
+\end{itemize}
+
+Softmax in matematica é una funzione di attivazione che trasforma un vettore di valori reali in un vettore di probabilità,
+dove ogni elemento del vettore di output rappresenta la probabilità che l'input appartenga a una determinata classe.\\
+La funzione softmax è spesso utilizzata nell'ultimo strato di una rete neurale per problemi di classificazione multi-classe,
+perché consente di interpretare l'output della rete come una distribuzione di probabilità sulle classi di output.\\
+è una generalizzqazione della funzione logistica che per un vettore a k-dimensioni di valori reali, 
+...
+
+ReLu è una funzione di attivazione che è solamente R(x) = max(0, x) if x<0 R(x) = x if x>=0, quindi restituisce 0 per input negativi 
+e restituisce l'input stesso per input positivi.\\
+
+Il multi-layer perceptron (MLP) è una rete neurale artificiale composta da più strati di neuroni, abbiamo i neuroni di ingresso, gli hidden layer e i neuri di oputput.\\
+In generale non ci sono connessioni tra neuroni dello stesso strato, e i dati fluiscono in una sola direzione, dagli input agli output, senza cicli o feedback.\\
+
+Road to Back Propogation: Learning Problems: 
+Un possibile learning algorithm potrebbe essere : 
+\begin{enumerate}
+    \item Inizializzare i pesi sinaptici con valori casuali
+    \item Presentare un pattern e l'output della rete
+    \item Calcolare l'output
+    \item Aggiornare i pesi sinaptici in base alla differenza tra l'output calcolato e l'output desiderato
+\end{enumerate}
+
+Tra l'output calcolato e l'output desiderato c'è una differenza, che è chiamata "errore".
+Il problema è che non sappiamo come aggiornare i pesi sinaptici in modo efficace per ridurre l'errore, soprattutto quando abbiamo più strati nascosti.\\
+
+La regola adoperata si chiama Delta Rule, che è una regola di apprendimento supervisionato che viene utilizzata per addestrare reti neurali a strato singolo, 
+come il Perceptron.\\
+In ingresso il segnale elabora l'output, e in uscita c'è un errore, che è la differenza tra l'output desiderato e l'output calcolato.\\
+La regola Delta aggiorna i pesi sinaptici in modo da ridurre l'errore, utilizzando la formula: 
+$$\Delta w = \alpha (t_i-y_i)g'(h_i) x_i$$
+dove $\Delta w$ è la variazione del peso sinaptico, $\alpha$ è il tasso di apprendimento, $t_i$ è l'output desiderato, $\hat{y}_i$ è l'output calcolato e $x_i$ è l'input.\\
+ Questa regola è comunemente semplificata come:
+$$\Delta w = \alpha (t_i-y_i) x_i$$
+La regola Delta è efficace per addestrare reti neurali a strato singolo, ma non è adatta per reti neurali a più strati, poiché non fornisce
+un modo per calcolare l'errore nei strati nascosti.\\
+Il gradiente vettorializza uno scalare, in questo caso ho vari pesi sinapsici e vettorializzo l'errore scalare, e questo mi permette di aggiornare 
+tutti i pesi sinaptici in modo efficiente.\\
+
+$$\Delta w=-\eta \frac {\delta E}{\delta w}$$
+dove $\Delta w$ è la variazione del peso sinaptico, $\eta$ è il tasso di apprendimento, $E$ è la funzione di errore e $\frac{\delta E}{\delta w}$ è 
+il gradiente dell'errore rispetto al peso sinaptico.\\
+
+Note on Learning Rate
+\subsection{Dark Age}
+Il secondo paradigma, chiamato "Dark Age", si riferisce al periodo dagli anni '70 agli anni '80, durante il quale
+l'interesse per le reti neurali è diminuito notevolmente. Questo è stato causato da una serie di fattori,
+tra cui la mancanza di risultati significativi, le limitazioni computazionali e la concorrenza di altre 
+tecniche di intelligenza artificiale, come i sistemi esperti basati su regole. Durante questo periodo, 
+le reti neurali sono state spesso considerate un campo di ricerca marginale e hanno ricevuto poca
+attenzione da parte della comunità scientifica.\\
+
+\subsection{The Renaissance}
+Il terzo paradigma, chiamato "The Renaissance", si riferisce al periodo dagli anni '90 ad oggi, durante il quale
+le reti neurali hanno conosciuto una rinascita significativa. Questo è stato reso possibile da una serie di fattori,
+tra cui l'aumento delle capacità computazionali, la disponibilità di grandi quantità di dati e lo sviluppo di nuove
+architetture di reti neurali, come le reti neurali profonde (deep learning). Durante
+questo periodo, le reti neurali sono diventate una delle tecniche più popolari e di successo nell'ambito
+dell'intelligenza artificiale, con applicazioni in una vasta gamma di settori, tra cui il riconoscimento vocale, 
+la visione artificiale, la traduzione automatica e molti altri.\\
+
+
+The back-propagation algorithm è stato introdotto negli anni '80 da David Rumelhart, Geoffrey Hinton e Ronald Williams, 
+ed è diventato uno degli algoritmi di apprendimento più importanti per le reti neurali a più strati.\\
+Primo passo è quello di calcolare l'output di uscita, e il secondo passo usare la delta rule per aggiornare i pesi sinaptici.
+Questo processo viene ripetuto per ogni pattern di addestramento, e i pesi sinaptici vengono aggiornati in modo iterativo fino 
+a quando la rete neurale non raggiunge un livello di prestazioni soddisfacente.\\
+
+Momentum Descent é una variante del metodo di discesa del gradiente che introduce un termine di "momentum" per accelerare 
+la convergenza e ridurre il rischio di rimanere bloccati in minimi locali.\\
+
+Quando una rete neurale deve gestire degli input totalmente differenti in una direzione, corriamo il rischio di avere 
+differenze nette dalle grandezze che devo gestire, e questo può portare a problemi di convergenza durante l'addestramento.\\
+Quello che si fa è una normalizzazione, in modo che tutte le grandezze sono gestite in modo conveniente, e questo aiuta a migliorare 
+la convergenza durante l'addestramento della rete neurale.\\
+
+Il gradient descending è una procedura iterativa utilizzata per ottimizzare i pesi sinaptici di una rete neurale, al fine di minimizzare la funzione di errore.\\
+L'algoritmo di discesa del gradiente funziona calcolando il gradiente della funzione di errore rispetto ai pesi sinaptici, e poi aggiornando i pes
+i sinaptici in direzione opposta al gradiente, con un passo di aggiornamento determinato dal tasso di apprendimento.\\
+
+Come si svolge la fase del training:
+Abbiamo un bacino di dati che abbiamo pulito dal rumore, dobbiamo dimenzionare il training, ogni volta che faccio passare tutti i dati 
+di addestraento e ottengo tutte le uscite ho completato un'epoca. Uso un approccio Batch, quindi faccio passare tutti i dati di addestramento 
+prima di aggiornare i pesi sinaptici, e questo mi permette di avere una stima più accurata del gradiente.\\
+I batch sono partizionamenti di tutto il training.
+On-line o Batch Training?
+On-line training é un approccio in cui i pesi sinaptici vengono aggiornati dopo ogni singolo esempio di addestramento, 
+mentre batch training é un approccio in cui i pesi sinaptici vengono aggiornati dopo aver elaborato un intero batch di esempi di addestramento.\\
+L'on-line training può essere più veloce e adattivo, ma può essere più rumoroso e meno stabile, mentre il batch training può essere più stabile e 
+fornire una stima più accurata del gradiente, ma può essere più lento e richiedere più memoria.\\
+
+Overfitting: é un fenomeno che si verifica quando una rete neurale impara a memoria i dati di addestramento, perdendo la capacità di generalizzare a nuovi dati.\\
+
+Pruning: é una tecnica utilizzata per ridurre la complessità di una rete neurale, rimuovendo i pesi sinaptici che non contribuiscono 
+in modo significativo alla prestazione della rete.\\
+
+Regolarizzazione dei pesi: é una tecnica utilizzata per prevenire l'overfitting, aggiungendo un termine di penalizzazione alla funzione 
+di errore che incoraggia i pesi sinaptici a essere piccoli.\\
+
+Jittering: allenare la rete non con dati puri ma con dati con rumore controllato (rumore bianco).
+
+Quando si campiona il segnale si potrebbe introdurre un rumore periodico, e può succedere quando c'è un rumore di fondo gne gne.
+
+\section{Reti Neurali Non Supervisionati}
+Tra tutte le reti delle reti non supervisionate, ci sta la Self Organizing Maps (SOMs), che è una rete neurale artificiale che utilizza un algoritmo di apprendimento non supervisionato per mappare dati ad alta dimensione in uno spazio a bassa dimensione, preservando le relazioni topologiche tra i dati.\\
+Questa rete funziona con un apprendimento chiamato "competitive lerning". Vengono usati quando ci sono molti dati disorganizzati, e si vuole trovare una rappresentazione più compatta e organizzata dei dati, come ad esempio per la visualizzazione o la riduzione della dimensionalità.\\
+
+Si prestano alla compressione dei dati tramite la quantizzazione vettoriale.\\
+
+\subsection{Architettura Schematica di KNN SOM}
+
+Quando vogliamo stimolare un uscita di un neurone j-esimo dobbiamo avere uno stimolo iniziale che è dato da un input, e poi dobbiamo avere una connessione che è data da un peso sinaptico, e poi dobbiamo avere una funzione di attivazione che ci dice se il neurone si attiva o no.\\
+
+$y_j$ come quantità di stimolo che arriva al neurone j-esimo, $w_{ij}$ come peso sinaptico che collega il neurone i-esimo all'uscita del neurone j-esimo, e $x_i$ come input che arriva al neurone i-esimo.\\
+
+Il valore dei pesi fissi viene aggiornato durante la fase di addestramento, in cui i pesi vengono modificati in base alla distanza tra l'input e il neurone vincente (il neurone con il peso più vicino all'input).\\
+Il neurone vincente viene identificato calcolando la distanza tra l'input e i pesi di ciascun neurone nella mappa, e selezionando il neurone con la distanza minima.\\
+Una volta identificato il neurone vincente, i pesi di quel neurone e dei suoi vicini vengono aggiornati per avvicinarli all'input, utilizzando una formula di aggiornamento che dipende dalla distanza tra il neurone e l'input, e da un tasso di apprendimento che diminuisce nel tempo.\\
+
+I neuroni vicini al vicinato hanno pesi positivi, mentre i neuroni lontani hanno pesi negativi, e questo aiuta a preservare le relazioni topologiche tra i dati.\\
+Se io prendo un neurone centrale, definisco il vicinato con il laplaciano gaussiano. 
+Il neurone con più alto output viene chiamato neurone vincente, e i pesi di quel neurone e dei suoi vicini vengono aggiornati per avvicinarli all'input, utilizzando una formula di aggiornamento che dipende dalla distanza tra il neurone e l'input, e da un tasso di apprendimento che diminuisce nel tempo.\\
+
+Un isomorfismo é una mappa che preserva le relazioni topologiche tra i dati, quindi se due punti sono vicini nello spazio ad alta dimensione, saranno vicini anche nello spazio a bassa dimensione.\\
+
+I neuroni di uscita non sono connessi tra loro, quindi non c'è competizione tra i neuroni di uscita, ma piuttosto una competizione tra i neuroni di ingresso per attivare un neurone di uscita.\\
+
+Si possono usare due tecniche per identificare il neurone vincente:
+\begin{itemize}
+    \item Il neurone con il massimo output, che è il neurone con il peso più vicino all'input
+    \item Si sceglie il neurone il cui peso vettore è più simile al vettore di input, utilizzando una misura di distanza come la distanza euclidea o la distanza di Manhattan
+\end{itemize}
+
+\paragraph{Metodo 1}
+$$y_i=\sum w_{ij} x_i$$
+Dove $y_i$ è l'output del neurone i-esimo, $w_{ij}$ è il peso sinaptico che collega il neurone j-esimo all'uscita del neurone i-esimo, e $x_j$ è l'input che arriva al neurone j-esimo.\\
+Posso scriverlo anche come:
+$$y_i=W_j\cdot X=|W_j| |X| \cos \theta$$
+Dove $W_j$ è il vettore dei pesi del neurone j-esimo, $X$ è il vettore di input, e $\theta$ è l'angolo tra i due vettori.\\
+
+\paragraph{Metodo 2}
+Il neurone vincente su input X è quello la quale ha il peso vettore simile a X.
+
+$$j_0:DIS(W_{j0}, X)<DIS(W_j, X) \forall j\neq j_0$$
+
+Ci sono diversi modi per calcolare la distanza (DIS):
+\begin{itemize}
+    \item Euclidean Distance
+    \item Road Distance (Manhattan Distance)
+    \item Hamming Distance (only for binary vectors)
+\end{itemize}
+
+\paragraph{Learning Rule}
+
+$$\Delta W(t) = \alpha(X-W)$$
+Dove $\Delta W(t)$ è la variazione del peso sinaptico al tempo t, $\alpha$ è il tasso di apprendimento, $X$ è il vettore di input e $W$ è il vettore dei pesi del neurone vincente.\\
+Il tasso di apprendimento $\alpha$ è un parametro che controlla la velocità con cui i pesi vengono aggiornati durante l'addestramento, e di solito diminuisce nel tempo per consentire alla rete di convergere verso una soluzione stabile.\\
+Il processo di addestramento continua fino a quando i pesi non convergono a valori stabili, o fino a quando non viene raggiunto un numero massimo di iterazioni.\\
+
+\paragraph{Neighborhood update}
+
+Il raggio di interazione è l'insieme dei neruoni che hanno una distanza più piccola di un certo valore (raggio) dal neurone vincente, e i pesi di questi neuroni vengono aggiornati in modo simile a quelli del neurone vincente, ma con un tasso di apprendimento che diminuisce con la distanza dal neurone vincente.??????\\
+
+\subsection{Kohonen Learning Algorithm}
+
+.............
+
+
+\section{RNN - Recurrent Neural Networks}
+
+Creare una situazione in cui il neurone viene eccitato anche attraverso un feedback loop che la sua stessa uscita produce. Quindi in ingresso ha i dati che arrvano
+da altri neuroni e anche i dati che arrivano da lui stesso.\\
+
+Abbiamo dei feedback che possono provenire (oltre a loro stessi) anche da neuroni dello stesso strato, qui il flusso informativo è più articolato. 
+Fully connetted é quando ogni neurone è connesso a ogni altro neurone, quindi anche a se stesso.\\
+
+Abbiamo un input all'istante t e uno stato nascosto che rappresenta la memoria della rete, e un output che dipende sia dall'input che dallo stato nascosto.\\
+Queste reti non hanno una memoria a lungo termine, quindi si è pensato di creare una memoria più a lungo termine attraverso le reti LSTM (Long Short-Term Memory).
+
+\subsection{LSTM - Long Short-Term Memory}
+Le RNN usano le informazioni passate per migliorare le prestazioni di una rete neurale su input attuali e futuri, queste reti contengono uno strato nascosto chw 
+consentono alla rete di mantenere una memoria a breve termine, ma non sono in grado di gestire efficacemente la memoria a lungo termine a causa del problema del gradiente che scompare.\\
+
+Si aggiungono per le LSTM delle porte aggiuntive che consentono alla rete di mantenere e aggiornare una memoria a lungo termine, permettendo alla rete di apprendere e ricordare informazioni 
+per periodi di tempo più lunghi.\\
+Due input $c_{t-1}$ e $h_{t-1}$, e due output $h_t$ e $c_t$. Le porte (gate) f, g, i, o sono funzioni di attivazione che controllano il flusso di informazioni all'interno della cella LSTM.\\
+La porta di dimenticanza (forget gate) f decide quali informazioni devono essere dimenticate dalla memoria a lungo termine, la porta g (memory call), la porta di input (input gate) i decide quali nuove informazioni devono essere
+aggiunte alla memoria a lungo termine, la porta di output (output gate) o decide quali informazioni devono essere restituite come output.\\
+
+Per ia per musica si usano le RNN, perché la musica è una sequenza di note che si sviluppa nel tempo, e le RNN sono in grado di catturare le dipendenze temporali tra le note,
+per esempio, se una nota è seguita da un'altra nota, la RNN può imparare a prevedere la seconda nota in base alla prima nota. Però non si ricordavano le note di istanti precedenti 
+quindi si è pensato di usare le LSTM, che hanno una memoria a lungo termine, e quindi possono ricordare le note di istanti precedenti e prevedere le note future in modo più accurato.\\
+
+\section{Transformer}
+
+Sia LSDM che RNN adoperano un processamento sequenziale, viceversa i Transformers introducendo l'idea del multihead sono in grado di addestrarsi in parallelo, 
+e questo è un vantaggio significativo in termini di efficienza computazionale, soprattutto quando si lavora con grandi quantità di dati.\\
+
+"Attention is all you need" é il titolo di un articolo del 2017 che ha introdotto il concetto di Transformer, un'architettura di rete neurale che si basa interamente sul meccanismo di auto-attenzione, senza l'uso di convoluzioni o ricorrenze.\\
+
+Il punto di forza dell'architettura Transformer risiede nell'utilizzo di meccanismi di attenzione, in particolare quello dell'autoattenzione. Sfrutta l'autoattenzione per modellare le 
+dipendenze tra i token in una sequenza, indipendentemente dalla loro distanza reciproca. Questo consente al modello di catturare relazioni a lungo raggio tra i token, migliorando la capacità di comprendere il contesto e le relazioni semantiche all'interno della sequenza.\\
+
+Riescono a operare in modo parallelo, quindi l'addestramento sfrutta l'informazione che viene operata simultaneamente su più token, invece nelle RNN e LSTM l'addestramento è sequenziale, quindi ogni token viene elaborato uno alla volta, e questo può essere un collo di 
+bottiglia in termini di efficienza computazionale, soprattutto quando si lavora con grandi quantità di dati.\\
+
+I Tranformer sono in grado di collegare le informazioni lontano nel tempo o testo,invece nelle RNN e LSTM (che ha uno svuotatore di memoria) non è possibili.
+Nonostante ciò le RNN e LSTM sono ancora utilizzate in alcune applicazioni (a volte per le risorse limitate), come il riconoscimento vocale e la generazione di testo, dove la capacità di catturare le dipendenze temporali è importante, 
+ma i Transformer stanno diventando sempre più popolari in molte applicazioni di elaborazione del linguaggio naturale e di visione artificiale, grazie alla loro capacità di catturare relazioni a lungo raggio e alla loro efficienza computazionale.\\
+
+Concetto dell'auto-attenzione (Transformer): è un meccanismo che consente a una rete neurale di concentrarsi su parti specifiche dell'input quando elabora i dati,
+invece di elaborare l'intero input in modo uniforme. Questo è particolarmente utile per compiti come la traduzione automatica, dove alcune parole o frasi possono essere più importanti di altre per comprendere il significato del testo.\\
+Il meccanismo di auto-attenzione funziona calcolando un peso di attenzione per ogni elemento dell'input, che indica quanto quell'elemento è rilevante per il compito in questione. Questi pesi di attenzione vengono poi utilizzati per combinare gli elementi
+dell'input in modo da produrre un output che tiene conto delle parti più importanti dell'input.\\
+
+\subsection{Self Attention}
+Tradizionalmente, per rappresentare le parole come vettori si utilizzavano metodi come One-Hot Econding, Bag of Words e TF-IDF, che rappresentano le parole come vettori sparsi e non catturano le relazioni semantiche tra le parole.\\
+Si basavano principalmente sulla frequenza e posizione delle parole nei documenti, senza considerare il contesto in cui le parole appaiono.\\
+
+Per superare queste limitazioni, la comunità NLP ha adottato gli embedding di parole, che rappresentano le parole come vettori densi in uno spazio continuo, catturando le relazioni semantiche tra le parole. Per
+esempio la parola re è più vicina alla parola regina che alla parola mela. Ma ancora una parola poteva avere più significati, esempio light significa sia leggero che luce.\\
+
+Qui entra l'autoattenzione, che consente al modello di concentrarsi su parti specifiche dell'input quando elabora i dati, e quindi di catturare il contesto in cui le parole appaiono.
+Considera l'intero contesto della sequenza di input.\\
+
+Il blocco dell'autoattenzione opera su tre componenti (vettori) fondamentali:
+\begin{itemize}
+    \item Query (Q): rappresenta la parola o il token per cui stiamo calcolando l'attenzione. Per ogni parola della sequenza, il modello genera un vettore di interrogazione
+    che viene poi utilizzato per confrontare quella parola con le altre parole della sequenza e calcolare i pesi di attenzione.
+    \item Key (K): rappresenta le parole o i token che stiamo confrontando con la query per calcolare l'attenzione.
+    \item Value (V): rappresenta le parole o i token che stiamo combinando per produrre l'output dell'attenzione.
+\end{itemize}
+
+Quindi attraverso dei pesi di query e key si calcolano i pesi di attenzione, che indicano quanto ogni parola della sequenza è rilevante per la parola di interesse (query), 
+e poi questi pesi di attenzione vengono utilizzati per combinare i valori (value) delle parole della sequenza, in modo da produrre un output che tiene conto delle parti più importanti dell'input.\\
+
+\paragraph{Passaggi per il blocco Autoattenzione}
+\begin{itemize}
+    \item Calcolare i vettori di query, key e value per ogni parola della sequenza di input, utilizzando matrici di peso apprese durante l'addestramento.
+    \item Calcolare i punteggi di attenzione per ogni parola della sequenza, confrontando i vettori di query con i vettori di key, e normalizzando i risultati con una funzione softmax.
+    \item Scalatura dei punteggi di attenzione per evitare problemi di stabilità numerica, dividendo i punteggi per la radice quadrata della dimensione dei vettori di key.
+    \item Applicare la funzione softmax ai punteggi di attenzione scalati per ottenere i pesi di attenzione, che indicano quanto ogni parola della sequenza è rilevante per la parola di interesse (query).
+    \item Utilizzare i pesi di attenzione per combinare i vettori di value delle parole della sequenza, in modo da produrre un output che tiene conto delle parti più importanti dell'input.
+\end{itemize}  
+
+\subsection{Multi-Head Attention}
+
+Il meccanismo di multi-head attention è un'estensione del meccanismo di auto-attenzione che consente al modello di catturare diverse relazioni tra le parole in una sequenza, utilizzando più "teste" di attenzione.\\
+Invece di calcolare un singolo set di pesi di attenzione, il modello calcola più set di pesi di attenzione in parallelo, ognuno con le proprie matrici di peso per query, key e value.\\
+Questo consente al modello di catturare diverse relazioni tra le parole in una sequenza, come relazioni sintattiche, semantiche e di dipendenza, migliorando la capacità del modello di comprendere il contesto e le
+relazioni semantiche all'interno della sequenza.\\
+Il meccanismo di multi-head attention funziona calcolando più set di pesi di attenzione in parallelo, e poi combinando i risultati di ciascuna testa di attenzione per produrre l'output finale.\\
+Ogni testa di attenzione può concentrarsi su aspetti diversi della sequenza di input, e combinando i risultati di più teste di attenzione, il modello può catturare una gamma più ampia di relazioni tra le parole in una sequenza, 
+migliorando la capacità del modello di comprendere il contesto e le relazioni semantiche all'interno della sequenza.\\
+
+Le fasi sono:
+\begin{itemize}
+    \item Proiezione lineare: per ogni testa di attenzione, proiettare i vettori di query, key e value in spazi di dimensione inferiore utilizzando matrici di peso apprese durante l'addestramento.
+    \item Calcolo dell'attenzione: per ogni testa di attenzione, calcolare i pesi di attenzione utilizzando i vettori di query, key e value proiettati, seguendo i passaggi descritti nel blocco di auto-attenzione.
+    \item Concatenazione: concatenare i risultati di tutte le teste di attenzione per ottenere un singolo vettore di attenzione combinato.
+    \item Proiezione finale: proiettare il vettore di attenzione combinato in uno spazio di dimensione originale utilizzando una matrice di peso appresa durante l'addestramento, per ottenere l'output finale del meccanismo di multi-head attention.
+\end{itemize}
+
+Questo tipo di attenzione è importante perché consente al modello di catturare diverse relazioni tra le parole in una sequenza, migliorando la capacità del modello di comprendere il contesto e le relazioni semantiche all'interno della sequenza, 
+e quindi migliorando le prestazioni del modello su compiti di elaborazione del linguaggio naturale e di visione artificiale.\\
+
+\subsection{Masked Multi-head Attention}
+
+Il meccanismo di masked multi-head attention è una variante del meccanismo di multi-head attention che viene utilizzata nei modelli di generazione di testo, come i modelli di linguaggio autoregressivi.\\
+In un modello di linguaggio autoregressivo, il modello genera testo un token alla volta,e quindi non può utilizzare informazioni future per generare il token corrente. Il meccanismo di masked
+multi-head attention risolve questo problema mascherando i token futuri durante il calcolo dei pesi di attenzione, in modo che il modello possa concentrarsi solo sui token passati e presenti.\\
+Il meccanismo di masked multi-head attention funziona calcolando i pesi di attenzione come nel meccanismo di multi-head attention, ma con l'aggiunta di una maschera che impedisce al modello di accedere ai token futuri durante il calcolo dei pesi di attenzione.\\
+La maschera viene applicata ai punteggi di attenzione prima della normalizzazione softmax, impostando i punteggi di attenzione per i token futuri a un valore molto basso (ad esempio, -inf) in modo che i pesi di attenzione per quei token siano praticamente zero dopo l'applicazione della funzione softmax.\\
+Questo consente al modello di concentrarsi solo sui token passati e presenti durante la generazione del testo, migliorando la coerenza e la qualità del testo generato.\\
+
+Processo di generazione del testo con masked multi-head attention:
+\begin{itemize}
+    \item Mascheramento dei token futuri: durante il calcolo dei pesi di attenzione, applicare una maschera che impedisce al modello di accedere ai token futuri, impostando i punteggi di attenzione per i token futuri a un valore molto basso (ad esempio, -inf).
+    \item Implementazione della maschera: durante il calcolo dei punteggi di attenzione, aggiungere la maschera ai punteggi di attenzione prima della normalizzazione softmax, in modo che i pesi di attenzione per i token futuri siano praticamente zero dopo l'applicazione della funzione softmax.
+    \item Applicazione su più teste: applicare la maschera a tutte le teste di attenzione in parallelo, assicurando che il modello non possa accedere ai token futuri durante il calcolo dei pesi di attenzione per tutte le teste.
+\end{itemize}
+
+\subsection{Transformer e musica}
+I Transformer sono stati utilizzati con successo anche nella generazione di musica, grazie alla loro capacità di catturare relazioni a lungo raggio e di comprendere il contesto all'interno di una sequenza.\\
+Per applicare i Transformer alla generazione di musica, è necessario rappresentare la musica in un formato che possa essere elaborato dal modello. Una comune rappresentazione della musica è il formato MIDI,
+che rappresenta la musica come una sequenza di eventi, come note, durate e dinamiche.\\
+Una volta che la musica è stata rappresentata in un formato adatto, è possibile addestrare un modello di Transformer sulla sequenza di eventi musicali, utilizzando tecniche di addestramento simili a quelle utilizzate per la generazione di testo.\\
+Il modello di Transformer impara a prevedere il token musicale successivo in base ai token musicali precedenti, e può essere utilizzato per generare nuove sequenze musicali che seguono lo stile e la struttura della musica di addestramento.\\
+I Transformer hanno dimostrato di essere efficaci nella generazione di musica, producendo risultati di alta qualità che possono essere indistinguibili dalla musica composta da esseri umani, e stanno diventando sempre più popolari come strumento per la 
+composizione musicale assistita da intelligenza artificiale.\\
+

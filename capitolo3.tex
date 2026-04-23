@@ -1,0 +1,126 @@
+\section{Reti Generative Avversarie (GAN)}
+Il loro approccio é del 2014 e sono capaci di generare contenuti estremamente realistici come volti umani inesistenti, opere d'arte e video (i cosiddetti "deepfakes").
+
+Posso avere impatti artistici con IA e avere tutti i problemi di copyright e etici o usarli come integrazione artistica.\\
+
+Il meccanismo é realizzato attraverso due giocatori: un \textbf{generatore} (Falsario) e un \textbf{discriminatore} (Esperto). Il generatore crea dati falsi, mentre il discriminatore cerca di distinguere tra dati reali e falsi. Entrambi i modelli vengono addestrati simultaneamente, con il generatore che cerca di ingannare il discriminatore e quest'ultimo che cerca di migliorare la sua capacità di identificare i dati falsi.\\
+
+Una rete (Generatore) produce in uscita dei dati (riferiti a un contesto specifico, ad esempio immagini (quindi matrice pixel) o testo) e questi dati vengono dati in input a un'altra rete (discriminatore) che deve capire se sono dati reali o dati generati.\\
+
+Il generatore riceve in ingresso le conferme o le smentite del discriminatore e cerca di migliorare la sua capacità di ingannare il discriminatore.\\
+
+Inganno davvero il discriminatore, quando il discriminatore non riesce più a distinguere tra dati reali e dati generati (quindi da 50\% vero e 50\% falso), allora il generatore ha raggiunto il suo obiettivo.\\
+
+Questo processo é chiamato "gioco a somma zero" perché il guadagno di un giocatore è esattamente bilanciato dalla perdita dell'altro.\\
+
+Matematicamente, questo processo é descritto come un problema di \textbf{minimax}, dove l'obiettico é trovare un punto di equilibrio in cui nessuno dei due giocatori può migliorare la propria posizione senza peggiorare quella dell'altro.\\
+
+\paragraph{Minimax}
+Il minimax é una strategia usata soprattutto nei giochi a informazione completa e a somma zero (dove se io vinco (+1) tu perdi (-1) e viceversa).\\
+Il concetto è quello di scegliere la mossa che minimizza la massima perdita possibile.\\
+In pratica é come giocare a scacchi. Tu non scegli la mossa che ti dà il massimo guadagno, ma quella che ti dà il minimo danno, considerando che l'avversario farà la mossa migliore per lui.\\
+Nelle GAN il generatore cerca di minimizzare la probabilitá che il discriminatore indovini che i dati sono falsi, mentre il discriminatore cerca di massimizzare questa probabilità.\\
+
+\paragraph{Equilibrio di Nash}
+Il concetto di equilibrio di Nash si riferisce a una situazione in cui nessun giocatore può migliorare la propria posizione cambiando unilateralmente la propria strategia, considerando le strategie degli altri giocatori.\\
+É una situazione di "stallo perfetto". Se io so cosa farai tu, e tu sai cosa farò io, allora nessuno dei due ha un incentivo a cambiare la propria strategia.\\
+Un esempio é il dilemma del prigioniero, dove due prigionieri devono decidere se collaborare o tradire l'altro. Se entrambi collaborano, ottengono una pena ridotta. Se uno tradisce e l'altro collabora, il traditore ottiene una pena ancora più ridotta, mentre il collaboratore ottiene una pena più severa. Se entrambi tradiscono, ottengono una pena moderata. L'equilibrio di Nash in questo caso è che entrambi i prigionieri scelgono di tradire, anche se sarebbe meglio per entrambi se collaborassero.\\
+
+Quindi mentre il minimax ti dice come giocatore per proteggerti, l'equilibro di nash descrive dove finisce il gioco.
+
+Nelle GAN quando il generatore produce immaggini perfette il discriminatore non riesce più a distinguere tra dati reali e dati generati, quindi si raggiunge un equilibrio di Nash (50 VERE 50 FALSI).\\
+
+Immaginiamo come se fosse una partita a scacchi infinita. Nel pratico la funzione di costo (obiettivo) é condivisa: 
+\begin{itemize}
+    \item Il generatore cerca di minimizzare il punteggio del discriminatore. Il suo obiettivo é che il discriminatore assegni 1 (vero) ai suoi falsi
+    \item Il discriminatore cerca di massimizzare la sua capacitá di distinguere ttra il vero dal falso. Il suo punteggio ideale é 1 per le foto vere e 0 per quelle create dal generatore.
+\end{itemize}
+
+\paragraph{Esempio pratico: creazione immagine gatto}
+\begin{itemize}
+    \item Il generatore nota che se mette le orecchie a punta, il discriminatore tende a classificare l'immagine come un gatto. Quindi inizia a creare immagini con orecchie a punta.
+    \item Il generatore non sceglie una strategia azzardata (tipo creare gatto blu sperando che il discriminatore non se ne accorga), ma cerca di migliorare gradualmente le sue immagini basandosi sui feedback ricevuti dal discriminatore.
+    \item Il generatore minimizza la sua perdita massima: ovvero, cerca di produrre l'immagine che ha la minor probabilitá possibile di essere scartata, assumento che il discriminatore stia facendo del suo meglio per identificare i falsi.
+\end{itemize}
+
+Supponiamo che dopo migliaia di tentativi:
+\begin{itemize}
+    \item Il generatore produce un'immagine di un gatto che è così realistica che il discriminatore non riesce più a distinguere se è reale o falsa.
+    \item In questo punto, il generatore ha raggiunto il suo obiettivo: ha ingannato con successo il discriminatore.
+    \item Il discriminatore, d'altra parte, ha raggiunto un punto in cui non può migliorare ulteriormente la sua capacità di distinguere tra reale e falso, poiché le immagini generate sono indistinguibili da quelle reali. La sua probabilitá di successo è del 50\%, il che significa che è in equilibrio di Nash con il generatore.
+\end{itemize}
+
+Se il generatore cambia strategia (ad esempio, inizia a creare cani), il discriminatore potrebbe facilmente identificare queste immagini come false, quindi il generatore non ha alcun incentivo a cambiare la sua strategia una volta raggiunto l'equilibrio di Nash.\\
+Se il discriminatore cambia strategia (ad esempio, inizia a concentrarsi su dettagli specifici come il colore degli occhi), il generatore potrebbe adattarsi per migliorare quei dettagli, ma se le immagini sono già indistinguibili, il discriminatore non ha alcun incentivo a cambiare la sua strategia.\\
+
+\subsection{Sintesi Visiva}
+
+$$min_G max_D V(D, G)$$
+Dove:
+\begin{itemize}
+    \item $G$ è il generatore, che cerca di minimizzare la funzione di costo.
+    \item $D$ è il discriminatore, che cerca di massimizzare la funzione di costo.
+    \item $V(D, G)$ è la funzione di costo condivisa che rappresenta l'obiettivo del gioco a somma zero tra il generatore e il discriminatore.
+    \item $min_G$ indica che il generatore cerca di minimizzare la funzione di costo, mentre $max_D$ indica che il discriminatore cerca di massimizzare la stessa funzione.
+\end{itemize}
+
+L'espressione che si usa:
+$$min_G max_D V(D, G) = E_{x \sim p_{data}}[log D(x)] + E_{z \sim p_z}[log(1 - D(G(z)))]$$
+Dove:
+\begin{itemize}
+    \item $p_{data}$ è la distribuzione dei dati reali.
+    \item $p_z$ è la distribuzione del vettore di rumore $z$.
+\end{itemize}
+
+Il primo termine $E_{x \sim p_{data}}[log D(x)]$ rappresenta l'aspettativa del logaritmo della probabilità che il discriminatore assegna ai dati reali. Il discriminatore cerca di massimizzare questo termine, cercando di assegnare una probabilità alta (vicina a 1) ai dati reali.\\
+Il secondo termine $E_{z \sim p_z}[log(1 - D(G(z)))]$ rappresenta l'aspettativa del logaritmo della probabilità che il discriminatore assegna ai dati generati dal generatore. Il generatore cerca di minimizzare questo termine, cercando di far sì che il discriminatore assegni una probabilità bassa (vicina a 0) ai dati generati, ovvero cercando di ingannare il discriminatore facendogli credere che i dati generati siano reali.\\
+$\sim$ indica che stiamo campionando da una distribuzione, quindi $x \sim p_{data}$ significa che stiamo campionando dati reali dalla distribuzione dei dati, e $z \sim p_z$ significa che stiamo campionando un vettore di rumore dalla distribuzione del rumore.\\
+
+
+\paragraph{Cosa succede durante il training?}
+Due fasi di addestramento:
+\begin{itemize}
+    \item \textbf{Fase A: Il turno del discriminatore ($max_D$)}: In questa fase, il discriminatore viene addestrato a distinguere tra dati reali e dati generati. Viene presentato con un mix di dati reali (campionati da $p_{data}$) e dati generati (creati dal generatore $G(z)$). Il discriminatore aggiorna i suoi pesi per massimizzare la probabilità di classificare correttamente i dati reali come veri e i dati generati come falsi. Aggiorna i suoi pesi per alzare $D(x)$ per i dati reali e abbassare $D(G(z))$ per i dati generati.
+    \item \textbf{Fase B: Il turno del generatore ($min_G$)}: In questa fase, il generatore viene addestrato a creare dati che ingannino il discriminatore. Viene presentato con un vettore di rumore $z$ campionato da $p_z$, e produce dati generati $G(z)$. Il generatore aggiorna i suoi pesi per minimizzare la probabilità che il discriminatore classifichi i dati generati come falsi, cercando di far sì che il discriminatore assegni una probabilità alta (vicina a 1) ai dati generati. Aggiorna i suoi pesi per alzare $D(G(z))$, cercando di far sembrare i dati generati più realistici.
+\end{itemize}
+
+Ci sono delle divergenze che mi permettono di capire quando sta avvenendo l'equilibrio di Nash.
+\paragraph{Divergenza di Kullback-Leibler (KL)}
+La divergenza di Kullback-Leibler (KL), nota anche come entropia relativa, misura la differenza tra due distribuzioni di probabilità. Nel contesto delle GAN, possiamo usare la divergenza KL per misurare quanto la distribuzione dei dati generati dal generatore si discosta dalla distribuzione dei dati reali.\\
+
+Per due distribuzioni di probabilità discrete $P$ e $Q$, la divergenza KL è definita come:
+$$D_{KL}(P || Q) = \sum_{x} P(x) \log\left(\frac{P(x)}{Q(x)}\right)$$
+Dove:
+\begin{itemize}
+    \item $P(x)$ è la probabilità del dato $x$ nella distribuzione dei dati reali.
+    \item $Q(x)$ è la probabilità del dato $x$ nella distribuzione dei dati generati dal generatore.
+    \item La somma è calcolata su tutti i possibili dati $x$.
+    \item $||$ é l'operatore di confronto tra le due distribuzioni, indicando che stiamo misurando la divergenza di $P$ rispetto a $Q$.
+\end{itemize}
+La divergenza KL è sempre non negativa e misura quanto la distribuzione $Q$ si discosta da $P$. Se $Q$ è identica a $P$, allora $D_{KL}(P || Q) = 0$, indicando che le due distribuzioni sono identiche. Se $Q$ si discosta significativamente da $P$, allora $D_{KL}(P || Q)$ sarà maggiore di zero, indicando una maggiore differenza tra le due distribuzioni.\\
+\paragraph{Divergenza di Jensen-Shannon (JSD)}
+La divergenza di Jensen-Shannon (JS) è una misura simmetrica della differenza tra due distribuzioni di probabilità. Nel contesto delle GAN, la divergenza JS viene spesso utilizzata per valutare quanto la distribuzione dei dati generati dal generatore si discosta dalla distribuzione dei dati reali.\\
+
+Per due distribuzioni di probabilità discrete $P$ e $Q$, la divergenza JS è definita come:
+$$D_{JS}(P || Q) = \frac{1}{2} D_{KL}(P || M) + \frac{1}{2} D_{KL}(Q || M)$$
+Dove:
+\begin{itemize}
+    \item $P(x)$ è la probabilità del dato $x$ nella distribuzione dei dati reali.
+    \item $Q(x)$ è la probabilità del dato $x$ nella distribuzione dei dati generati dal generatore.
+    \item $M(x) = \frac{1}{2}(P(x) + Q(x))$ è la media delle due distribuzioni.
+    \item $D_{KL}(P || M)$ è la divergenza KL tra $P$ e $M$, mentre $D_{KL}(Q || M)$ è la divergenza KL tra $Q$ e $M$.
+    \item $||$ é l'operatore di confronto tra le due distribuzioni, indicando che stiamo misurando la divergenza di $P$ rispetto a $Q$.
+    \item La divergenza JS è sempre non negativa e simmetrica, il che significa che $D_{JS}(P || Q) = D_{JS}(Q || P)$. Se $P$ e $Q$ sono identiche, allora $D_{JS}(P || Q) = 0$, indicando che le due distribuzioni sono identiche. Se $P$ e $Q$ si discostano significativamente, allora $D_{JS}(P || Q)$ sarà maggiore di zero, indicando una maggiore differenza tra le due distribuzioni.
+\end{itemize}
+
+In parole semplici, il discriminatore cerca di massimizzare la distanza tra le due distribuzioni, mentre il generatore, minimizzando la funzione costo, sta cercando di abbassare la JSD fino a 0. Quando JSD=0, significa che $p_{data}$ e $p_g$ sono identiche, quindi il generatore ha raggiunto il suo obiettivo di creare dati che sono indistinguibili dai dati reali, e il discriminatore non può più distinguere tra i due, raggiungendo così un equilibrio di Nash.\\
+
+Il JSD soffre del problema "gradiente svanente"se le distribuzioni sono troppo distanti, il che significa che il generatore non riceve feedback utili per migliorare la sua capacità di generare dati realistici.\\
+Per risolvere questo problema, sono state proposte varianti delle GAN, come le Wasserstein GAN (WGAN), che utilizzano una diversa misura di distanza tra le distribuzioni, chiamata distanza di Wasserstein, che fornisce un gradiente più stabile anche quando le distribuzioni sono distanti.\\
+
+La Earth Mover's Distance (EMD), nota anche come distanza di Wasserstein, è una misura di distanza tra due distribuzioni di probabilità. Nel contesto delle GAN, la distanza di Wasserstein viene utilizzata per valutare quanto la distribuzione dei dati generati dal generatore si discosta dalla distribuzione dei dati reali, fornendo un gradiente più stabile durante l'addestramento.\\
+
+C'é un piccolo inghippo: calcolare esattamente la distanza di Wasserstein può essere computazionalmente costoso, quindi i matematici usano un trucco chiamato "dualità di Kantorovich-Rubinstein" per riformulare il problema in modo che sia più efficiente da risolvere.\\
+In pratica, invece di calcolare direttamente la distanza di Wasserstein, si addestra un "critico" (una rete neurale) che cerca di massimizzare la differenza tra le aspettative dei dati reali e dei dati generati, soggetta a una condizione di Lipschitz.\\
+Il critico cerca di massimizzare la differenza tra l'aspettativa del logaritmo della probabilità che assegna ai dati reali e l'aspettativa del logaritmo della probabilità che assegna ai dati generati, mentre il generatore cerca di minimizzare questa differenza.\\
+In questo modo, le WGAN forniscono un gradiente più stabile durante l'addestramento, anche quando le distribuzioni dei dati reali e generati sono distanti, consentendo al generatore di migliorare gradualmente la qualità dei dati generati fino a raggiungere un equilibrio di Nash con il critico.\\

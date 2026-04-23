@@ -1,0 +1,429 @@
+\section{Computational Intelligence nel mondo dei dati}
+La \textbf{Computational Intelligence (CI)}, o intelligenza computazionale, è un 
+ramo dell'Intelligenza Artificiale che si concentra sullo sviluppo di metodi 
+computazionali in grado di apprendere, adattarsi, gestire l'incertezza e funzionare 
+in modo efficace in ambienti molto complessi.
+Questi metodi ottengono enormi successi traendo ispirazione diretta dall'intelligenza 
+biologica e dal mondo naturale, creando quelli che vengono definiti 
+"sistemi intelligenti".\\
+
+Questi algoritmi intelligenti includono:
+\begin{itemize}
+    \item reti neurali artificiali
+    \item calcolo evolutivo
+    \item intelligenza dello sciame
+    \item sistemi immunitari artificiali
+    \item sistemi fuzzy
+\end{itemize}
+
+La fonte primaria ispiratrice della computational intelligence. Nasce come proposta
+da un iraniano Zadeh, che propone la logica fuzzy, in cui diceva ottimi risultati potevano
+essere ottenuti da singole applicazioni.
+
+\subsection{Evoluzione della CI}
+Nel mondo dei dati, la CI rappresenta un pilastro fondamentale per quattro motivi principali:
+\begin{enumerate}
+    \item \textbf{Gestione dell'incertezza}: Fornisce gli strumenti per elaborare 
+    dati ambigui, rumorosi o incompleti, permettendo di prendere decisioni e fare 
+    previsioni anche quando le informazioni non sono perfette.
+    \item \textbf{Apprendimento e adattamento}: Le tecniche di CI estraggono 
+    informazioni direttamente dai dati per adattare i propri parametri. 
+    Questo è cruciale in un mondo dinamico dove i dati cambiano rapidamente nel tempo
+    \item \textbf{Complessità}: Riesce a gestire e risolvere problemi altamente 
+    complessi che risultano intrattabili con i metodi analitici e ingegneristici 
+    tradizionali.
+    \item \textbf{Automazione}: Automatizza processi e decisioni complesse, 
+    liberando l'essere umano e permettendogli di concentrarsi su attività 
+    più creative e strategiche.
+\end{enumerate}
+
+\subsection{Modelli Intelligenti vs. Modelli Algoritmici}
+La vera rivoluzione della CI nel campo dei dati è il passaggio dai modelli algoritmici
+a quelli intelligenti. 
+
+\textbf{Modelli Algoritmici}\\
+Questi modelli rappresentano l'approccio computazionale classico:
+\begin{itemize}
+    \item \textbf{Logica e Sequenze}: Seguono una sequenza logica di istruzioni predefinite. 
+    Si basano su algoritmi rigorosi, che definiscono passo dopo passo le operazioni necessarie 
+    per risolvere un problema.
+    \item \textbf{Determinismo}: Sono strettamente deterministici. 
+    Questo significa che, operando nelle medesime condizioni, produrranno sempre 
+    risultati identici a fronte di uno stesso input.
+    \item \textbf{Limitati alla Programmazione}: Sono vincolati in modo stringente al codice scritto dal programmatore. Per eseguire un determinato compito, richiedono che la sequenza di istruzioni sia inserita esplicitamente e dettagliatamente all'interno del programma.
+\end{itemize}
+
+\textbf{Modelli Intelligenti}
+Questi modelli, tipici della Computational Intelligence, 
+superano i limiti della programmazione rigida:
+\begin{itemize}
+    \item \textbf{Apprendimento e Adattamento}: La loro caratteristica principale è 
+    la capacità di imparare dai dati e di adattarsi alle nuove informazioni, 
+    il tutto senza essere esplicitamente programmati per farlo.
+    \item \textbf{Gestione dell'Incertezza}: Mentre i modelli algoritmici richiedono 
+    dati precisi, i modelli intelligenti possono operare in ambienti complessi 
+    gestendo l'incertezza. Sono in grado di prendere decisioni e fare previsioni 
+    anche in presenza di dati rumorosi o incompleti.
+    \item \textbf{Capacità Cognitive}: Riescono ad emulare alcune delle capacità cognitive umane, 
+    come l'adattamento alle variazioni dell'ambiente, l'apprendimento continuo e il ragionamento.
+\end{itemize}
+
+\subsection{Apprendimento e Adattamento ai Dati}
+Nell'ambito della Computational Intelligence (CI), l'apprendimento e l'adattamento 
+sono concetti strettamente legati che traggono una forte ispirazione dai processi 
+del mondo biologico e naturale.
+
+\paragraph{Apprendimento (Inspirazione Biologica e Artificiale)} 
+Nel mondo biologico, gli organismi viventi imparano continuamente dall'esperienza, 
+come ad esempio un animale che impara a evitare un determinato cibo dopo averne 
+provato gli effetti nocivi. Questo principio è stato traslato nell'Intelligenza Artificiale, 
+trovando la sua massima espressione nelle reti neurali artificiali. 
+In queste architetture, i "neuroni" (le unità di elaborazione) sono in grado di 
+modificare la forza delle proprie connessioni in base ai dati di input che ricevono, 
+consentendo alla rete di accumulare esperienza e "apprendere" nel tempo.
+\paragraph{Adattamento e Adattamento Dinamico} 
+In biologia, l'adattamento è il processo evolutivo attraverso cui una specie 
+diventa progressivamente più idonea a sopravvivere nel suo ambiente 
+(come gli uccelli che sviluppano becchi più adatti a raccogliere cibo difficile da 
+raggiungere). Nei sistemi di CI, l'adattamento viene implementato tramite algoritmi 
+che modificano il comportamento del sistema in base all'ambiente o ai nuovi dati in 
+ingresso, migliorandone le prestazioni nel tempo.\\
+
+Un concetto fondamentale in questo campo è l'\textbf{adattamento dinamico}, 
+ovvero la capacità di un sistema di modificare i suoi parametri in tempo reale 
+mentre è in esecuzione in un ambiente mutevole. 
+
+Questo è un enorme vantaggio perché permette al sistema di adattarsi istantaneamente 
+senza aver bisogno di essere fermato per un "re-training" (ri-addestramento) offline. 
+I sistemi dotati di processi adattivi riducono drasticamente il tempo necessario per 
+giungere a una soluzione rispetto ai vecchi metodi che dovevano calcolare o esplorare 
+gran parte delle possibilità.
+
+\begin{itemize}
+    \item \textbf{Apprendimento Supervisionato}: L'algoritmo viene addestrato fornendogli 
+    un set di dati in cui le risposte corrette (output desiderati) sono già note. 
+    Il sistema si adatta calcolando l'errore rispetto all'output corretto e applicando 
+    le necessarie correzioni. È molto utilizzato per problemi di classificazione e 
+    regressione.
+    \item \textbf{Apprendimento Non Supervisionato}: Al sistema vengono forniti dati 
+    "grezzi", privi di etichette o output desiderati. L'algoritmo deve adattarsi 
+    esplorando i dati senza una guida esterna, con lo scopo di identificare 
+    autonomamente pattern, regole o strutture nascoste (utilizzato molto nel 
+    clustering o nella riduzione dimensionale).
+    \item \textbf{Apprendimento per Rinforzo}: Il sistema impara agendo all'interno 
+    di un ambiente dinamico. L'algoritmo si adatta in base alle conseguenze delle 
+    proprie azioni, ricevendo un feedback sotto forma di ricompensa (se l'azione è 
+    giusta) o penalità (se è sbagliata).
+\end{itemize}
+
+\subsection{L'importanza della Generalizzazione}
+Un concetto cardine quando si applica la CI ai dati è la \textbf{generalizzazione}. 
+Un modello non deve limitarsi a memorizzare i dati di addestramento 
+(fenomeno noto come overfitting), ma deve riuscire a estrarre regole e pattern 
+profondi per applicarli con successo a nuovi dati mai visti prima. 
+La generalizzazione è cruciale per l'efficienza del sistema, per la sua capacità 
+di affrontare la variabilità e il rumore del mondo reale, e per sapersi adattare 
+a contesti differenti. L'abilità di generalizzare viene solitamente misurata 
+testando il modello su un set di dati separato da quello di addestramento.\\
+
+\section{Soft Computing e Calcolo Bio-Ispirato}
+Il \textbf{Soft Computing} è un campo strettamente legato all'Intelligenza 
+Computazionale e definisce una forma di \textbf{computazione bio-ispirata}. 
+Bio-ispirata principalmente per algpritmi genetici e reti neurali. 
+Nella logica non c'è sempre una risposta univoca, per esempio colore dei capelli, sono
+bianchi ma ci sono anche bianchi sporchi, bianchi con riflessi, bianchi con sfumature, ecc.
+
+Si basa su algoritmi euristici che traggono la loro ispirazione direttamente dal mondo 
+naturale, seguendo un approccio che viene anche definito "ottimizzazione naturale" o 
+degli "algoritmi bio-ispirati".\\
+
+L'obiettivo di questi algoritmi è replicare o adattarsi ai processi osservati in 
+natura, imitando il comportamento degli organismi o dei sistemi biologici. 
+Questo tipo di computazione si rivela particolarmente efficace per risolvere problemi 
+molto complessi o per effettuare ottimizzazioni in contesti in cui le soluzioni devono
+sapersi adattare a cambiamenti dinamici, esattamente come le specie in natura si 
+adattano al proprio ambiente.\\
+
+I principali metodi e algoritmi che rientrano sotto l'ombrello del Soft Computing includono:
+
+\begin{itemize}
+    \item \textbf{Reti Neurali Artificiali}: Ispirate alla struttura e al funzionamento del cervello umano,
+    sono composte da unità di elaborazione chiamate "neuroni", collegate tra
+    loro in schemi complessi, che collaborano per apprendere dai dati e fare 
+    previsioni o prendere decisioni.
+    \item \textbf{Algoritmi Genetici}: Basati sulla teoria dell'evoluzione di Darwin, permettono 
+    di affrontare problemi di ottimizzazione di altissima complessità che 
+    richiederebbero tempi impraticabili con gli algoritmi tradizionali.
+    Utilizzano concetti come la selezione naturale del "più adatto", il 
+    crossover (incrocio genetico) e la mutazione per generare una popolazione di 
+    possibili soluzioni e farla evolvere progressivamente nel tempo.
+    \item \textbf{Logica Fuzzy}: È un'estensione della logica classica che permette 
+    di superare la rigidità degli insiemi binari (dove un valore è strettamente "vero" 
+    o "falso") introducendo i "gradi di verità".
+    La logica fuzzy permette di trattare concetti sfumati, imprecisi o vaghi (come
+    "quasi vero" o "parzialmente falso"), consentendo ai sistemi di modellare molto meglio 
+    l'ambiguità e la complessità del mondo reale.
+    \item \textbf{Algoritmi euristici ispirati a comportamenti collettivi (Swarm Intelligence)}: 
+    Sebbene raggruppati tra gli algoritmi naturali, spiccano modelli come la Particle 
+    Swarm Optimization (PSO) e l'Ant Colony Optimization (ACO).
+    La PSO replica il comportamento sociale degli stormi di uccelli o dei banchi 
+    di pesci, i cui membri comunicano e condividono le proprie "scoperte" per guidare 
+    l'intero gruppo verso l'obiettivo migliore. L'ACO, invece, si ispira al 
+    comportamento delle formiche, che per risolvere problemi combinatori lasciano 
+    tracce chimiche (feromoni) sul percorso per influenzare le decisioni del resto 
+    della colonia. Sono utilizzati per risolvere problemi di ottimizzazione dei percorsi,
+\end{itemize}
+
+\subsection{Algoritmi bio-ispirati}
+\paragraph{Problemi di ottimizzazione}
+Mettiamo che dobbiamo affrontare un problema di ottimizzazione, ovvero trovare 
+quei parametri che in uno spazio di soluzioni mi minimizzano o massimizzano una funzione obiettivo.
+Qualora scrivo la ricerca del funzione la ricerca del funzionale per massimizzarlo, quel funzionale
+si chiama fitness function, e il processo di ottimizzazione è chiamato processo di evoluzione.
+Se devo minimizzare la chiamerò funzione costo.\\
+
+Massimizzare questa funzione significa trovare delle caratteristiche indicative del problema, 
+Determinare quali sono i parametri che mi permettono di massimizzare la funzione obiettivo,
+e quindi trovare la soluzione migliore al problema che sto affrontando.\\
+
+Si instaura un processo iterativo in cui, a ogni iterazione, vengono generate nuove 
+soluzioni (o "individui") che vengono valutate in base alla loro "fitness" 
+(cioè quanto bene soddisfano la funzione obiettivo). Le soluzioni migliori vengono 
+selezionate per "riprodursi" e generare nuove soluzioni, che a loro volta vengono 
+valutate e selezionate, e così via, fino a quando non si raggiunge una soluzione 
+soddisfacente o si esaurisce il tempo disponibile.\\
+
+Mettiamo che dobbiamo cercare un minimo globale di una funzione complessa, 
+con molti minimi locali. Un algoritmo genetico, grazie alla sua capacità di esplorare 
+ampi spazi di soluzioni e di evitare di rimanere intrappolato in minimi locali, 
+può essere molto più efficace di un algoritmo tradizionale di ottimizzazione, 
+che potrebbe facilmente rimanere bloccato in un minimo locale senza raggiungere 
+il minimo globale.\\
+
+Pure gli algoritmi bio-ispirati dipendono da dei parametri, come la dimensione della
+popolazione, il tasso di mutazione, il tasso di crossover, ecc. Li posso rendere più
+o meno esplorativi a seconda di come li setto, e questo è un aspetto molto importante
+perché mi permette di bilanciare l'esplorazione (la capacità di cercare nuove soluzioni)
+e lo sfruttamento (la capacità di migliorare le soluzioni già trovate).\\
+
+A volte quando la mole di parametri è molto grande si cerca di privilegiare 
+algoritmi meno precisi ma più veloci, per esempio la ricerca del gradiente.
+
+\paragraph{Un'altra importante classificazione dei problemi di ottimizzazione}
+Le euristiche (come gli Algoritmi Genetici, la Particle Swarn Optimization, ecc.)vengono 
+suddivise in base a come bilanciano esplorazione e sfruttamento rispetto alle dimensioni
+dello spazio delle soluzioni:
+
+\begin{itemize}
+    \item \textbf{Euristiche per VHDSS (Very High Dimension Solution Space)}: Quando 
+    il problema è a dimensioni elevatissime e l'utente non ha alcuna idea di dove
+    si trovi la soluzione, è necessario utilizzare algoritmi ad alta esplorazione. 
+    In questi casi, il confronto premia il Calcolo Evolutivo (come gli Algoritmi
+    Genetici) e in generale i metodi di Swarm Intelligence, capaci di mappare ampie
+    porzioni di spazio sconosciuto.
+    \item \textbf{Euristiche per HDSS (High Dimension Solution Space)}: Quando si ha
+    solo un sospetto sulla zona in cui risiede la soluzione, le euristiche più
+    performanti per l'esplorazione includono algoritmi come la Bacterial Chemotaxis, 
+    il Simulated Annealing, la Tabu Search e l'uso della Logica Fuzzy.
+    \item \textbf{Euristiche per LDSS (Low Dimension Solution Space)}: Quando si ha 
+    già un'idea abbastanza precisa delle coordinate ottimali, la fase di esplorazione
+    diventa secondaria rispetto a quella di sfruttamento (exploitation). In questa
+    specifica fase di affinamento, il confronto premia algoritmi come la Particle
+    Swarm Optimization (PSO) e la Flock of Starlings Optimization.
+\end{itemize}
+
+Explanability (spiegabilità) è un aspetto cruciale in questo contesto, soprattutto
+quando si utilizzano modelli intelligenti che operano in ambienti complessi e dinamici.
+La capacità di spiegare le decisioni e i processi di apprendimento di un sistema di
+CI è fondamentale per garantire la fiducia degli utenti, facilitare la diagnosi di errori 
+e migliorare la trasparenza complessiva del sistema.
+Un sistema di CI con una buona explainability è in grado di fornire spiegazioni chiare
+e comprensibili sulle ragioni alla base delle sue decisioni, sui dati che ha 
+utilizzato per apprendere e sulle strategie che ha adottato per adattarsi a nuove 
+situazioni.
+
+Consideriamo l'euristica Particle Swarm Optimization (PSO) come esempio di algoritmo
+bio-ispirato. Questi algoritmi hanno una ispirazione di intelligenza di sciame (ma anche 
+sociale) per questo a lavorarci sopra c'erano anche sociologi, psicologi, biologi, ecc.
+Ciascun individuo che farà parte dello sciame, verrà inizializzato nello spazio delle
+soluzioni con una posizione e una velocità casuali. 
+In base al punto in cui si trova ogni individuo misurerà la sua fitness, e in base
+alla fitness degli altri individui, si muoverà verso la posizione migliore che ha 
+trovato lui stesso e verso la posizione migliore trovata dagli altri individui.
+In questo modo, lo sciame si muove collettivamente verso le aree dello spazio
+delle soluzioni che presentano una fitness più elevata, esplorando e sfruttando
+le informazioni condivise tra i membri dello sciame per trovare soluzioni ottimali o quasi ottimali.\\
+
+Gli stimoli sono:
+\begin{itemize}
+    \item \textbf{La mia esperienza personale} e quindi l'informazione che ho accumulato fino a quel momento
+    (la mia posizione nello spazio delle soluzioni e la mia fitness)
+    \item \textbf{L'esperienza sociale}, ovvero l'informazione che condividono gli altri membri
+    dello sciame
+    \item \textbf{L'inerzia}, ovvero la tendenza a mantenere la propria velocità e direzione 
+    attuale, che aiuta a bilanciare l'esplorazione e lo sfruttamento.
+\end{itemize}
+Sarà dentro un ciclo for questo:
+$$v_k^j(t+1)=v_k^j(t)+\lambda^j(p_best^j_k-x_k^j(t))+\gamma^j(g_best^j-x_k^j(t))$$
+k vuol dire che lo spazio è n dimensionale, j vuol dire che ci sono m individui nello
+sciame, $v_k^j(t)$ è la velocità dell'individuo j nella dimensione k al tempo t,
+$p_best$ è la posizione migliore che ha trovato lui stesso, $g_best$ è la posizione 
+migliore trovata dagli altri membri dello sciame, $\lambda$ e $\gamma$ sono dei 
+parametri che bilanciano l'importanza di questi due stimoli.\\
+$$V_i^{k+1}=\omega V_i^k+c_1rand_1(...)x(pbest_i^k-s_i^k)+c_2rand_2(...)x(gbest^k-s_i^k)...$$
+In questo modo, ogni individuo si muove verso la posizione migliore che ha trovato lui stesso
+e verso la posizione migliore trovata dagli altri membri dello sciame, bilanciando
+l'esplorazione e lo sfruttamento attraverso i parametri $\lambda$ e $\gamma$.
+
+I parametri rand1 e rand2 sono dei numeri casuali che vengono generati ad ogni iterazione, e che
+introducono una componente di casualità nel processo di aggiornamento della velocità,
+che aiuta a evitare che lo sciame si blocchi in minimi locali e a favorire l'esplorazione 
+di nuove aree dello spazio delle soluzioni.\\
+
+\textbf{Diagramma di flusso che rappresenta l'Algoritmo Generale PSO}:
+
+\section{Swarn intelligence as State Equations}
+É una variazione importante perché si passa da un algoritmo stocastico a uno deterministico, 
+rimandendo nell'ambito della swarm intelligence, ma con un approccio più matematico e formale.
+Modo di approcciare in maniera supervisionato invece di lasciare la supervisione ai parametri stocastici.\\
+
+Questa variazione é una variazione che la comunitá scientifica del calcolo evolutivo digerisce e non 
+digerisce, perché la natura stessa del calcolo é sfumato, quindi qualsiasi introduzione di rigidità e 
+determinismo viene vista come una forzatura. Questi algortimi spesso fanno riferimento a fenomeni
+naturali ma non li trattano come dovrebbero essere trattati.\\
+
+Siamo abituati a vederer l'espressione: 
+$$v_k^j(t+1)=\omega v_k^j(t)+\lambda(p^j_{{best}_k}(t)-x_k^j(t))+\gamma(g_{best}(t)-x_k^j(t))+ \sum_{m=1}^N h_{km}v_m^j$$
+In questo modo, ogni individuo si muove verso la posizione migliore che ha trovato lui stesso
+e verso la posizione migliore trovata dagli altri membri dello sciame, bilanciando l'esplorazione e lo 
+sfruttamento attraverso i parametri $\lambda$ e $\gamma$, e tenendo conto anche dell'influenza degli altri 
+individui dello sciame attraverso il termine $\sum_{m=1}^N h_{km}v_m^j$.
+
+Il parametro hgamma é il parametro sociale, $g_{\text{best}}$ (global best) é la posizione migliore trovata dall'intero sciame quindi non 
+dovrebbe avere j all'apice.
+
+Una volta aggiornata la velocitá aggiorniamo la posizione:
+$$x_k^j(t+1)=x_k^j(t)+v_k^j(t+1)$$
+
+Peró sto sommando una velocitá a una posizione, quindi non é propriamento corretto.
+
+Per convertire questo algoritmo in un sistema dinamico, dobbiamo esprimere l'aggiornamento della velocità e 
+della posizione in termini di equazioni differenziali o differenze discrete.
+$$v_k^j(t+\Delta t)=\omega v_k^j(t)+\lambda(p_{{best}_k}(t)-x_k^j(t))+\gamma(g_{best}(t)-x_k^j(t))+ \sum_{m=1}^N h_{km}v_m^j$$
+Nel momento in cui divido per $\Delta t$ ottengo:
+$$\frac{v_k^j(t+\Delta t)-v_k^j(t)}{\Delta t}=\omega \frac{v_k^j(t)}{\Delta t}+\lambda\frac{p_{\text{best},k}(t)-x_k^j(t)}{\Delta t}+\gamma\frac{g_{\text{best}}(t)-x_k^j(t)}{\Delta t}+ \sum_{m=1}^N h_{km}\frac{v_m^j}{\Delta t}$$
+Nel limite in cui $\Delta t$ tende a zero, otteniamo un sistema di equazioni differenziali ordinarie che descrivono 
+l'evoluzione della velocità e della posizione degli individui dello sciame nel tempo.\\
+
+La forzante ($F_k (t)$).
+
+I vantaggi di usare le forme chiuse invece di un algoritmo stocastico sono molteplici:
+\begin{itemize}
+    \item \textbf{Analisi Matematica}: Le forme chiuse permettono di applicare strumenti di analisi matematica per studiare la stabilità, la convergenza e il comportamento dinamico del sistema, cosa che è molto più difficile da fare con algoritmi stocastici.
+    \item \textbf{Controllo e Ottimizzazione}: Con un modello deterministico, è possibile progettare strategie di controllo e ottimizzazione più precise, poiché si ha una comprensione più chiara di come le variabili influenzano il sistema.
+    \item \textbf{Prevedibilità}: I sistemi deterministici offrono una maggiore prevedibilità rispetto agli algoritmi stocastici, che possono produrre risultati diversi a ogni esecuzione a causa della loro natura casuale.
+    \item \textbf{Efficienza Computazionale}: In alcuni casi, le forme chiuse possono essere più efficienti dal punto di vista computazionale, poiché non richiedono la generazione di numeri casuali o l'esecuzione di molte iterazioni per raggiungere una soluzione soddisfacente.
+    \item \textbf{Applicabilità a Problemi Specifici}: In alcuni contesti, come il controllo di sistemi dinamici o l'ottimizzazione in tempo reale, un modello deterministico può essere più adatto e fornire risultati più affidabili rispetto a un algoritmo stocastico.
+\end{itemize}
+
+\section{Fuzzy logic}
+Fuzzy significa rozzo, per distiunguerlo dalla logica booleana che é pulita e precisa. 
+C'é il ragionamento approssimato, rappresneta un modo di riprodurre in modo artificiale i processi di 
+ragionamento umano, che spesso non sono precisi e rigidi, ma piuttosto sfumati e imprecisi.\\
+
+Non é la totale negazione della logica booleana, ma una sua estensione che permette di trattare concetti sfumati e imprecisi.
+Alcuni concetti come caldo o freddo, alto o basso, sono intrinsecamente sfumati e non possono essere rappresentati in modo
+preciso con la logica booleana.
+
+Per esempio per il caldo o freddo passiamo da una rappresentazione numerica a una qualificazione linguistica.\\
+
+Concetti fondamentali della logica fuzzy:
+\begin{itemize}
+    \item Modellare l'incertezza del linguaggio naturale
+    \item Trattare il concetto di parziale verità
+    \item Definire i valori compresi tra 0 e 1, ovvero tra il "completamente falso" e il "completamente vero"
+\end{itemize}
+
+Autore della fuzzy logic é Lotfi Zadeh, che ha introdotto il concetto di "fuzzy set" (insieme sfumato)
+per rappresentare insiemi che non hanno confini netti, ma piuttosto gradi di appartenenza.\\
+
+\subsection{Concetto di insieme}
+Secondo la logica classica, un elemento o appartiene a un insieme o non appartiene, 
+mentre nella logica fuzzy, un elemento può appartenere a un insieme con un certo grado di appartenenza, 
+che è rappresentato da un numero compreso tra 0 e 1.\\
+
+Potremmo dire che fuzzy é una finestrazione del booleano, ma in realtá un elemento puó appartenere in parte 
+anche in due insiemi opposti, per esempio un individuo puó essere alto e basso allo stesso tempo, con gradi di appartenenza diversi.\\
+
+L'insieme dato dalla logica classica si chiama "crisp set" (insieme nitido), mentre l'insieme dato dalla logica fuzzy 
+si chiama "fuzzy set" (insieme sfumato).\\
+
+\textbf{Diagramma di Venn} é l'operazione di intersezionei tra insiemi crisp.
+
+Zadeh ha esteso il concetto di insieme a quello di insieme fuzzy, introducendo il concetto di "membership function" 
+(funzione di appartenenza), che assegna a ogni elemento un grado di appartenenza all'insieme fuzzy, rappresentato 
+da un numero compreso tra 0 e 1.\\
+Se un elemento ha un grado di appartenenza di 0, significa che non appartiene affatto all'insieme,
+mentre se ha un grado di appartenenza di 1, significa che appartiene completamente all'insieme, 
+se é tra 0 e 1 appartiene parzialmente.\\
+
+Le funzioni di Membership possono assumere diverse forme, come ad esempio funzioni triangolari, 
+trapezoidali o gaussiane, a seconda del contesto e delle esigenze specifiche dell'applicazione.\\
+
+Le funzioni di appartenenza possono essere ricondotte a 3 fattori principali:
+\begin{itemize}
+    \item altezza: ti da l'estremo superiore 
+    \item core: ti da l'estremo inferiore 
+    \item supporto: ti da l'intervallo di valori per cui la funzione di appartenenza è non nulla
+\end{itemize}
+
+Un numero fuzzy non rappresenta un valore preciso, ma piuttosto un intervallo di valori con gradi di appartenenza diversi.
+Fuzzy singleton é un numero fuzzy che rappresenta un singolo valore con un grado di appartenenza di 1, 
+mentre tutti gli altri valori hanno un grado di appartenenza di 0.\\
+
+L'operazione di intersezione tra insiemi fuzzy é definita come il minimo dei gradi di appartenenza,
+mentre l'operazione di unione é definita come il massimo dei gradi di appartenenza.\\
+
+\subsection{Fuzzy systems}
+I normali insiemi nella logica booleana vengono trasformati in insiemi fuzzy, che consistono nel suddividere
+l'universo considerato in sottoinsieme definiti da funzioni di appartenenza.
+La membership function assegna a ogni elemento un grado di appartenenza a ciascun sottoinsieme, 
+che rappresenta la sua "appartenenza" a quel sottoinsieme.
+Questo grado ha un valore compreso tra 0 e 1.\\
+
+Un elemento puó avere piú di una membership function, e quindi appartenere a piú sottoinsiemi con gradi di appartenenza diversi.\\
+
+\paragraph{Algoritmo di inferenza fuzzy}
+\begin{itemize}
+    \item Definire le variabili linguistiche e i loro insiemi fuzzy associati (initialization)
+    \item Construire le membership function per ciascun insieme fuzzy (initialization)
+    \item Costruire le regole basi (initialization): delle regole linguistiche if then che collegano le 
+    variabili di input alle variabili di output, utilizzando operatori logici fuzzy (come AND, OR, NOT) per combinare le condizioni.
+    \item Convertire i valori di input in gradi di appartenenza utilizzando le membership function (fuzzification)
+    \item Valutazione delle regole secondo le regole base (inference)
+    \item Combinare i risultati per ciascuna regola (inference)
+    \item Convertire l'output fuzzy in un valore crisp utilizzando un metodo di defuzzificazione (defuzzification)
+\end{itemize}
+
+\paragraph{Fuzzy rules}
+Sample fuzzy rules for air conditioning:\\
+IF (temperature id cold OR too-cold) AND (target is warm) THEN command is heat.\\
+IF (temperature is hot OR too-hot) AND (target is warm) THEN command is cool.\\
+IF (temperature is warm) AND (target is warm) THEN command is no-change.\\
+\paragraph{Operazioni Fuzzy}
+OR:
+MAX: $$\mu_{A \cup B}(x) = \max(\mu_A(x), \mu_B(x))$$
+ASUM: $$\mu_{A \cup B}(x) = \mu_A(x) + \mu_B(x) - \mu_A(x) \cdot \mu_B(x)$$
+BSUM: $$\mu_{A \cup B}(x) = \min(1, \mu_A(x) + \mu_B(x))$$
+AND:
+MIN: $$\mu_{A \cap B}(x) = \min(\mu_A(x), \mu_B(x))$$
+PROD: $$\mu_{A \cap B}(x) = \mu_A(x) \cdot \mu_B(x)$$
+BDIF: $$\mu_{A \cap B}(x) = \max(0, \mu_A(x) + \mu_B(x) - 1)$$
+
+\paragraph{Accumulation methods}
+Maximum: $$\mu_{\text{acc}}(x) = \max{\mu_A(x), \mu_B(x)}$$
+Bounded sum: $$\mu_{\text{acc}}(x) = \min(1, \mu_A(x) + \mu_B(x))$$
+Normalized sum: $$\mu_{\text{acc}}(x) = \frac{\mu_A(x) + \mu_B(x)}{\max{1, \max{\{\mu_A(x'), \mu_B(x')\}}}}$$
+
+\paragraph{Esempio robot che segue una linea}
+
