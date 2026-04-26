@@ -124,3 +124,151 @@ C'é un piccolo inghippo: calcolare esattamente la distanza di Wasserstein può 
 In pratica, invece di calcolare direttamente la distanza di Wasserstein, si addestra un "critico" (una rete neurale) che cerca di massimizzare la differenza tra le aspettative dei dati reali e dei dati generati, soggetta a una condizione di Lipschitz.\\
 Il critico cerca di massimizzare la differenza tra l'aspettativa del logaritmo della probabilità che assegna ai dati reali e l'aspettativa del logaritmo della probabilità che assegna ai dati generati, mentre il generatore cerca di minimizzare questa differenza.\\
 In questo modo, le WGAN forniscono un gradiente più stabile durante l'addestramento, anche quando le distribuzioni dei dati reali e generati sono distanti, consentendo al generatore di migliorare gradualmente la qualità dei dati generati fino a raggiungere un equilibrio di Nash con il critico.\\
+
+\section{Diffusion Models}
+Le GAN hanno avuto il loro successo, ma sono state superate da un nuovo tipo di modelli chiamati "Diffusion Models". Questi modelli funzionano in modo diverso rispetto alle GAN, ma condividono l'obiettivo di generare dati realistici.\\
+
+Partiamo con il concetto di Latenza. Lo spazio latente inteso come rappresentazione comporessa dei tempi, oppure il tempo di latenza cioé un tempo di latenza che é in ritardo nella generazione.
+
+\paragraph{Spazio latente}
+Il processo di generazione non avviene nell'immagine in pixel a piena risoluzione, ma in uno spazio latente. Quindi é una rappresentazione compressa dell'immagine, che contiene tutte le informazioni necessarie per ricostruire l'immagine a piena risoluzione.\\
+
+Per il funzionamento, invece di rimuovere il rumore da un'immagine 1024x1024, il modello lavora su una versione pi'upiccola. Successivamente, un decoder trasforma questa rappresentazione latente nell'immagine finale ad alta risoluzione.\\
+
+Il vantaggio risiede nella riduzione enorme dei costi computazionali e il tempo necessario per generare immagini, rendendo i modelli molto piú veloci ed efficienti rispetto alle GAN.\\
+
+\paragraph{Latenza come Tempo di generazione}
+La latenza indica il tempoo che intercorre tra l'inserimento del prompt e la visualizzazione dell'immagine generata.\\
+I modelli di diffusione creano immagini rimuovendo progressivamente rumore gaussiano in piú fasi (denoising). Ogni fase richiede un certo tempo di calcolo, quindi la latenza totale dipende dal numero di fasi e dalla complessità del modello.\\
+
+\subsection{Fasi di generazione}
+\paragraph{Addestramento (capire il rumore)}
+Prima di rimuovere il rumore, il modello deve imparare a capire cos'è il rumore. Durante l'addestramento, il modello viene esposto a immagini reali e a versioni di queste immagini con rumore aggiunto (rumore gaussiano). 
+Al modello viene mostrata l'immagine con rumore e deve imparare a prevedere il rumore originale che è stato aggiunto. In questo modo, il modello impara a riconoscere e comprendere la natura del rumore presente nelle immagini.\\
+
+\paragraph{Generazione (rimozione iterativa del rumore)}
+Quando chiedi al modello di creare un'immagine, il processo si inverte. Si inizia con un "seme" di puro rumore casuale. Il modello analizza il rumore e basandosi sull'addestramento precedente, stima quale parte del rumore deve essere rimossa per avvicinarsi all'immagine desiderata. Questo processo di rimozione del rumore viene ripetuto iterativamente, con il modello che continua a rimuovere il rumore in più fasi, fino a quando non si ottiene un'immagine finale che è una rappresentazione realistica e coerente con il prompt iniziale.\\
+
+Uno dei piú diffusi modelli di diffusione é chiamato Stable Diffusion, questo sfoltimento non avviene direttamente sui pixel, ma su una rappresentazione latente dell'immagine. Quindi, invece di rimuovere il rumore da un'immagine ad alta risoluzione, il modello lavora su una versione più piccola e compressa dell'immagine (spazio latente). Successivamente, un decoder trasforma questa rappresentazione latente nell'immagine finale ad alta risoluzione.\\
+
+\subsection{U-NET}
+Le U-NET sono l'architettura neurale che funge da "cervello" operativo del processo di diffusione. Sono progettate per eseguire operazioni di denoising, ovvero rimuovere il rumore dalle immagini durante il processo di generazione.\\
+
+Si occupano di Decoder e Encoder dell'immagine. L'encoder prende l'immagine con rumore e la comprime in una rappresentazione latente, mentre il decoder prende questa rappresentazione latente e la trasforma in un'immagine ad alta risoluzione.\\
+
+Tra Encoder e Decoder ci sono dei "salti" (skip connections) che permettono di mantenere informazioni importanti durante il processo di denoising, migliorando la qualità dell'immagine generata.\\
+
+\paragraph{Cosa fa la U-NET}
+Riceve in input un'immagine con rumore e un vettore di testo (prompt) che descrive l'immagine desiderata. La U-NET utilizza il prompt per guidare il processo di denoising, cercando di rimuovere il rumore in modo da avvicinarsi all'immagine descritta dal prompt.\\
+Il processo di denoising avviene in più fasi, con la U-NET che continua a rimuovere il rumore iterativamente fino a ottenere un'immagine finale che è una rappresentazione realistica e coerente con il prompt iniziale.\\
+Alla fine tira fuori una mappa del rumore, non ti da l'immagine pulita ma ti dice la sua opinione su quale parte del rumore deve essere rimossa per avvicinarsi all'immagine desiderata.\\
+
+In sintesi se il modello di diffusione é il processo, la U-NET é lo strumento che permette di distinguere tra il rumore casuale e le forme sensate.
+
+\paragraph{Filtri}
+La U-NET é una rete convoluzionale. L'archiettettura é composta da molti strati. Prima comprime i dati per capire il senso logico, poi li espande per vedere i dettagli. La convoluzione significa far passare un filtro per ogni pixel dell'immagine, in modo da estrarre caratteristiche importanti come bordi, forme e texture.\\
+
+Quindi i filtri sono le componenti base del processo convolutivo e quindi anche della U-NET. I filtri sono piccoli kernel che vengono applicati all'immagine per estrarre caratteristiche specifiche. Ad esempio, un filtro potrebbe essere progettato per rilevare bordi verticali, mentre un altro potrebbe essere progettato per rilevare bordi orizzontali.\\
+
+Negli stati iniziali i filtri cercano cose semplici (linee, bordi, angoli), mentre negli stati più profondi cercano forme più complesse (facce, oggetti, scene).\\
+
+I filtri non sono decisi dall'uomo, ma vengono appresi autonomamente dalla rete durante l'addestramento. La rete inizia con filtri casuali e, attraverso il processo di addestramento, aggiorna i pesi dei filtri in modo da migliorare la sua capacità di riconoscere e generare immagini realistiche.\\
+
+Se si usassero filtri predefiniti e fissi (come quelli di photoshop), il sistema sarebbe rigido e non completo, perché non sarebbe in grado di adattarsi a nuove immagini o stili. Al contrario, i filtri appresi autonomamente permettono alla rete di essere flessibile e di generare una vasta gamma di immagini diverse, adattandosi alle caratteristiche specifiche dei dati di addestramento.\\
+
+Possiamo intendere come se la rete neurale fosse l'organismo vivente, mentre i filtri sono le sue cellule.
+
+Questi filtri sono chiamati Kernels o filtri convoluzionali. I filtri IIR (Infinite Impulse Response) e FIR (Finite Impulse Response) sono due tipi di filtri utilizzati in elaborazione del segnale, ma non sono specificamente associati alle reti neurali convoluzionali. Sono progettati per una determinata funzione fissa, quindi i parametri sono fissi.
+I Kernels sono matrici di numeri (3x3 o 5x5) i cui valori vengono appresi durante l'addestramento della rete neurale. Questi valori vengono aggiornati iterativamente per migliorare la capacità della rete di riconoscere e generare immagini realistiche.\\
+
+Questi filtri lavorano nello spazio dei pixel (no dominio tempo o frequenza).\\
+
+\paragraph{Esempio Filtro Sobel}
+Il filtro Sobel è un esempio di filtro convoluzionale utilizzato per rilevare i bordi in un'immagine. È composto da due kernel, uno per rilevare i bordi verticali e l'altro per rilevare i bordi orizzontali.\\
+Il kernel per rilevare i bordi verticali è:
+$$\begin{bmatrix}-1 & 0 & 1 \\
+-2 & 0 & 2 \\
+-1 & 0 & 1\end{bmatrix}$$
+Il kernel per rilevare i bordi orizzontali è:   
+$$\begin{bmatrix}-1 & -2 & -1 \\
+0 & 0 & 0 \\
+1 & 2 & 1\end{bmatrix}$$
+Quando questi kernel vengono applicati a un'immagine, il filtro Sobel calcola la differenza di intensità tra i pixel adiacenti, evidenziando così i bordi presenti nell'immagine.\\
+Quindi, se si applica il filtro Sobel a un'immagine, si otterrà una nuova immagine in cui i bordi sono evidenziati, facilitando l'identificazione di forme e oggetti all'interno dell'immagine.\\
+
+\paragraph{Filtro Laplaciano}
+Il filtro Laplaciano è un altro esempio di filtro convoluzionale utilizzato per rilevare i bordi in un'immagine. A differenza del filtro Sobel, che utilizza due kernel separati per rilevare i bordi verticali e orizzontali, il filtro Laplaciano utilizza un singolo kernel che combina entrambe le direzioni.\\
+Il kernel del filtro Laplaciano è:
+$$\begin{bmatrix}0 & 1 & 0 \\
+1 & -4 & 1 \\
+0 & 1 & 0\end{bmatrix}$$
+Quando questo kernel viene applicato a un'immagine, il filtro Laplaciano calcola la seconda derivata dell'intensità dei pixel, evidenziando così i bordi presenti nell'immagine.\\
+Il filtro Laplaciano è particolarmente efficace nel rilevare i bordi in immagini con rumore, poiché è meno sensibile alle variazioni di intensità rispetto al filtro Sobel. Tuttavia, può essere più suscettibile a falsi positivi in presenza di rumore elevato, quindi spesso viene utilizzato in combinazione con altri filtri per migliorare la qualità dei risultati.\\
+
+\paragraph{Esempio Griglia che deve essere filtrata}
+Supponiamo di avere una griglia 3x3 che rappresenta un'immagine, con i seguenti valori di intensità dei pixel:
+$$\begin{bmatrix}0 & 255 & 255 \\
+0 & 255 & 255 \\
+0 & 255 & 255\end{bmatrix}$$
+Dove 0 é il nero e 255 é il bianco.\\
+Se applichiamo il filtro della U-NET, utilizzeremo il kernel:
+$$\begin{bmatrix}-1 & 0 & 1 \\
+    -1 & 0 & 1 \\
+    -1 & 0 & 1\end{bmatrix}$$
+Per calcolare il nuovo valore del pixel centrale (255), moltiplichiamo ogni elemento del kernel per il corrispondente elemento della griglia e sommiamo i risultati:
+$$(-1 \cdot 0) + (0 \cdot 255) + (1 \cdot 255) + (-1 \cdot 0) + (0 \cdot 255) + (1 \cdot 255) + (-1 \cdot 0) + (0 \cdot 255) + (1 \cdot 255) = 765$$
+Il nuovo valore del pixel centrale dopo l'applicazione del filtro sarà 765, che rappresenta un'intensità molto più alta rispetto al valore originale di 255. Questo indica che il filtro ha rilevato un forte bordo verticale nella griglia, evidenziando la transizione tra i pixel neri (0) e bianchi (255).\\
+
+Se i pixel fossero tutti uguali (ad esempio, tutti 255), l'applicazione del filtro non produrrebbe un cambiamento significativo, poiché non ci sarebbero bordi da rilevare. In questo caso, il nuovo valore del pixel centrale sarebbe 0, indicando l'assenza di transizioni di intensità e quindi l'assenza di bordi nella griglia.\\
+
+Poiché il rumore é disordinato, i pixel cambiano in modo casuale, quindi il filtro cerca di identificare i bordi e le forme all'interno di questo disordine, cercando di estrarre informazioni significative dall'immagine.\\
+
+In una U-NET, ci sono centinaia di filtri che lavorano in parallelo, ognuno dei quali cerca di identificare caratteristiche specifiche all'interno dell'immagine, contribuendo così al processo di denoising e alla generazione di immagini realistiche.\\
+
+Dopo che il filtro ha prodotto un numero (come 765 di prima), quel valore non viene usato cosí come é. Viene passato attraverso una funzione di attivazione (come ReLU) che trasforma il valore in un intervallo più gestibile, ad esempio, limitandolo a un massimo di 255 per rappresentare l'intensità dei pixel in un'immagine.\\
+
+Perché serve passare da una funzione di attivazione? Perché i valori prodotti dai filtri possono essere molto grandi o molto piccoli, e potrebbero non essere direttamente interpretabili come intensità dei pixel. La funzione di attivazione aiuta a normalizzare questi valori, rendendoli più adatti per la rappresentazione visiva e per ulteriori elaborazioni all'interno della rete neurale. Introduce la non linearitá permettendo alla rete di apprendere relazioni più complesse tra i dati, migliorando così la capacità del modello di generare immagini realistiche.\\
+
+\paragraph{SiLU (Sigmoid Linear Unit)}
+La funzione di attivazione SiLU, nota anche come Sigmoid Linear Unit o Swish, è una funzione di attivazione non lineare utilizzata nelle reti neurali. 
+
+
+\paragraph{Come avviene tecnincamente}
+Esistono due metodi principali per rimpicciolire i dati durante il processo di addestramento::
+\begin{itemize}
+    \item \textbf{Pooling}: Il pooling è una tecnica che riduce la dimensione spaziale dell'immagine, mantenendo le informazioni più importanti. Ad esempio, il max pooling prende il valore massimo in una finestra di pixel, mentre l'average pooling calcola la media dei valori in una finestra di pixel. Questo processo aiuta a ridurre la complessità computazionale e a prevenire l'overfitting.
+    \item \textbf{Strided Convolution}: La convoluzione con stride è un'altra tecnica per ridurre la dimensione spaziale dell'immagine. Invece di applicare il filtro a ogni pixel, si applica a intervalli regolari (stride), saltando alcuni pixel. Ad esempio, con uno stride di 2, il filtro viene applicato solo a ogni secondo pixel, riducendo così la dimensione dell'immagine di metà.
+\end{itemize}
+
+Se U-Net lavorasse sempre alla risoluzione massima, sarebbe estremamente costosa in termini di calcolo e memoria. Riducendo la risoluzione durante le fasi iniziali del processo di denoising, la U-Net può concentrarsi su caratteristiche più globali dell'immagine, come forme e strutture, prima di passare a dettagli più fini nelle fasi successive. Questo approccio gerarchico consente alla rete di apprendere in modo più efficiente e di generare immagini di alta qualità senza richiedere risorse computazionali eccessive.\\
+
+Come facciamo a ricostruire un'imagine ad alta risoluzione da una rappresentazione latente a bassa risoluzione? U-Net utilizza un processo chiamato "upscaling" o "upsampling". Durante questo processo, la rete prende la rappresentazione latente a bassa risoluzione e la espande gradualmente attraverso strati di convoluzione trasposta (transposed convolution) o tecniche di interpolazione, fino a raggiungere la risoluzione desiderata.\\
+Durante l'upscaling, la U-Net utilizza anche le "skip connections" per mantenere informazioni importanti dalle fasi precedenti del processo di denoising, combinando le caratteristiche apprese a diverse risoluzioni per migliorare la qualità dell'immagine finale.\\
+In questo modo, la U-NET è in grado di generare immagini ad alta risoluzione a partire da una rappresentazione latente a bassa risoluzione, mantenendo al contempo la coerenza e la qualità dell'immagine durante tutto il processo di generazione.\\
+
+\paragraph{Up-convolution (Espansione)}
+I pixel diventano sfocati e indistinti. 
+La U-Net recupera le informazioni salvate durante la fase di discesa (Downsampling) e le "incolla"direttamente su quelle della fase di salita.
+Dalla discesa arrivano i dettagli fini (bordi precisi, posizione esatta dei pixel) catturati prima della compressione.
+Dalla salita arriva l'intelligenza semantica (la comprensione che quella forma é per esempio un occhio, o una bocca).\\
+
+Il decoder, nello strato di ricostruzione, si ritrova con due tipi di informazione. L'informazione "globale" (sfocata ma intelligente)
+e l'informazione "locale" (nitida ma ignorante del contesto).\\
+I filtri nel braccio di salita (decoder) combinano queste due informazioni per ricostruire un'immagine ad alta risoluzione che è sia dettagliata che coerente con il contesto appreso durante la fase di discesa (encoder).\\
+Passaggio dopo passaggio, la U-Net risale alla risoluzione originale, migliorando gradualmente la qualità dell'immagine generata fino a raggiungere un risultato finale che è una rappresentazione realistica e coerente con il prompt iniziale.\\
+
+\subsection{Prompt di testo}
+Il testo del prompt entra nella U-Net attraverso un meccanismo chiamato "cross attention". Questo meccanismo consente alla U-Net di focalizzarsi su parti specifiche del testo del prompt durante il processo di generazione dell'immagine.\\
+
+La frase "un gatto nero, prima di arrivare alla U-Net, viene passata a un altro modello chiamato CLIP. Questo trasforma le parole in serie di vettori numerici (embedding) che rappresentano il significato semantico del testo. Questi vettori vengono poi utilizzati dalla U-Net per guidare il processo di generazione dell'immagine, assicurando che l'immagine finale sia coerente con la descrizione fornita nel prompt.\\
+
+Il meccanismo di cross attention consente alla U-Net di "prestare attenzione" a specifiche parole o frasi nel prompt durante la generazione dell'immagine. Ad esempio, se il prompt è "un gatto nero con occhi verdi", la U-Net può focalizzarsi sulla parola "gatto" per generare la forma generale dell'animale, sulla parola "nero" per determinare il colore del pelo e sulla frase "occhi verdi" per aggiungere dettagli specifici agli occhi del gatto.\\
+In questo modo, la U-Net utilizza le informazioni semantiche fornite dal prompt di testo per guidare il processo di generazione dell'immagine, assicurando che il risultato finale sia coerente con la descrizione fornita e che le caratteristiche specifiche del prompt siano rappresentate nell'immagine generata.\\
+
+\paragraph{Perché accade il "Bleeding"}
+Il "bleeding" è un fenomeno che si verifica quando le informazioni provenienti da diverse parti del prompt di testo si mescolano in modo indesiderato durante il processo di generazione dell'immagine. Questo può portare a risultati incoerenti o confusi, dove elementi che dovrebbero essere distinti si sovrappongono o si mescolano in modo errato.\\
+Il bleeding può accadere quando il meccanismo di cross attention non riesce a distinguere correttamente tra le diverse parole o frasi nel prompt, causando una confusione nell'interpretazione del testo da parte della U-Net. Ad esempio, se il prompt è "un gatto nero con occhi verdi e un cane bianco con occhi blu", il bleeding potrebbe portare a un'immagine in cui i dettagli del gatto e del cane si mescolano in modo errato, creando un risultato confuso e incoerente.\\
+Per mitigare il bleeding, è importante fornire prompt di testo chiari e ben strutturati, evitando ambiguità e assicurandosi che le informazioni siano presentate in modo chiaro e distinto. Inoltre, migliorare il meccanismo di cross attention all'interno della U-Net può aiutare a ridurre il rischio di bleeding, consentendo alla rete di distinguere meglio tra le diverse parti del prompt e di generare immagini più coerenti e accurate.\\
+
+Per correggere questi errori o dare prioritá a un elemento, si usano i pesi. Tecnicamente, si moltiplica il valore numerico dell'embedding di quella parola. Ad esempio, se voglio dare più importanza alla parola "gatto" nel prompt "un gatto nero con occhi verdi", posso moltiplicare l'embedding di "gatto" per un fattore maggiore di 1 (ad esempio, 1.5), mentre lascio gli altri embedding invariati. In questo modo, la U-Net darà più peso alle caratteristiche associate alla parola "gatto" durante il processo di generazione dell'immagine, riducendo il rischio di bleeding e migliorando la coerenza del risultato finale con il prompt fornito.\\
+
