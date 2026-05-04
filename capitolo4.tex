@@ -4,3 +4,32 @@
 
 \subsection{DFT nel caso bidimensionale}
 Abbiamo sia una distribuzione del segnale lungo asse x che y. Trattiamo l'immagine lungo una periodicità.
+
+Che rapporto c'è tra la trsformata di Fourier e il rumore. Il rumore viene studiato per essere rimosso e dare più risalto all'immagine, e in alcuni casi è la base dell'approccio intelligente (esempio diffusion model).
+
+La trasformata di fourier converte l'immagine in una funzione nel dominio della frequenza. I punti di frequenza più alta che causano il rumore, una volta identificati, vengono sostituiti con frequenze più basse per ridurre il rumore.
+Una volta rimosso il disturbo, viene applicata la trasformata inversa per recuperare l'immagine.
+
+\paragraph{Che cosa è un'immagine rumorosa?}
+Il rumore dell'immagine è una variazione casuale della luminosità o delle informazioni.
+
+Nello spazio delle frequenze è possibile sopprimere frequenze indesiderate, ridurre lo spazio occupato da dati, rigenerare file degradati. 
+
+Le immagini sono contaminate dal rumore, ulteriori fonti di rumore sono la compressione e la trasmissione. 
+
+\subsection{Trasformata di Gabor per il calcolo dello spettrogramma}
+Lo spettrogramma è una rappresentazione visiva della distribuzione spettrale di un segnale in funzione del tempo. La trasformata di Gabor è una tecnica utilizzata per calcolare lo spettrogramma, che consente di analizzare come le frequenze di un segnale variano nel tempo.\\
+Mettiamo che prenda come segnale audio un segnale musicale, la trasformata di Gabor consente di visualizzare come le frequenze presenti nel segnale cambiano nel tempo, creando una rappresentazione tridimensionale che mostra l'intensità delle frequenze in funzione del tempo.\\
+
+Applichiamo la STFT (Short-Time Fourier Transform), anche detta trasformata di Gabor, al segnale audio, che consiste nel suddividere il segnale in finestre temporali e applicare la trasformata di Fourier a ciascuna finestra. Questo processo produce una matrice di valori complessi che rappresentano l'intensità delle frequenze in ogni finestra temporale.\\
+
+\paragraph{Principio di imprecisione}
+
+Le wavelet sono funzioni che consentono di analizzare un segnale a diverse scale e risoluzioni. La trasformata wavelet è una tecnica che utilizza le wavelet per decomporre un segnale in componenti a diverse frequenze e posizioni temporali.\\
+La trasformata wavelet consente di analizzare un segnale in modo più flessibile rispetto alla trasformata di Fourier, poiché può adattarsi meglio a segnali non stazionari o con caratteristiche locali.\\
+Inoltre, la trasformata wavelet è spesso utilizzata per la compressione dei dati, poiché consente di rappresentare un segnale con un numero ridotto di coefficienti, mantenendo comunque una buona qualità dell'immagine o del suono.\\
+
+\paragraph{midi notes}
+Il MIDI (Musical Instrument Digital Interface) è un protocollo standard per la comunicazione tra strumenti musicali elettronici, computer e altri dispositivi. Le note MIDI sono rappresentate da numeri interi che corrispondono a specifiche frequenze musicali. Ad esempio, la nota A4 (La sopra il Do centrale) è rappresentata dal numero MIDI 69, che corrisponde a una frequenza di 440 Hz.\\
+Il MIDI consente di rappresentare non solo le note musicali, ma anche altre informazioni come la durata delle note, la dinamica (intensità), e le modifiche del timbro. Questo rende il MIDI uno strumento molto versatile per la composizione musicale, la produzione e l'editing audio.\\
+Inoltre, il MIDI è ampiamente utilizzato nei software di produzione musicale e nei sintetizzatori, consentendo ai musicisti di creare e manipolare suoni in modo digitale.\\
