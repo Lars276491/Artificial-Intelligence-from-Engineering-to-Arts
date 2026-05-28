@@ -33,3 +33,49 @@ Inoltre, la trasformata wavelet è spesso utilizzata per la compressione dei dat
 Il MIDI (Musical Instrument Digital Interface) è un protocollo standard per la comunicazione tra strumenti musicali elettronici, computer e altri dispositivi. Le note MIDI sono rappresentate da numeri interi che corrispondono a specifiche frequenze musicali. Ad esempio, la nota A4 (La sopra il Do centrale) è rappresentata dal numero MIDI 69, che corrisponde a una frequenza di 440 Hz.\\
 Il MIDI consente di rappresentare non solo le note musicali, ma anche altre informazioni come la durata delle note, la dinamica (intensità), e le modifiche del timbro. Questo rende il MIDI uno strumento molto versatile per la composizione musicale, la produzione e l'editing audio.\\
 Inoltre, il MIDI è ampiamente utilizzato nei software di produzione musicale e nei sintetizzatori, consentendo ai musicisti di creare e manipolare suoni in modo digitale.\\
+
+\section{Perché gli strumenti suonano in modo diverso?}
+Consideriamo gli spettrogrammi, nell'asse delle ascisse abbiamo il tempo, nell'asse delle ordinate abbiamo la frequenza che nel caso musicale possiamo chiamarla pich ovvero il livello della nota.\\
+Il timbro è la qualità del suono che ci permette di distinguere tra strumenti diversi, anche quando suonano la stessa nota. Il timbro è influenzato da vari fattori, tra cui la forma d'onda del suono, le armoniche presenti e il modo in cui il suono viene prodotto.\\
+
+Cosa ci fará capire se na nota é stata suonata da un violino o tromba? La nota che sentiamo (pich) é la frequenza fondamentale, ma ci sono anche le armoniche che sono frequenze di ordine superiore alla frequenza fondamentale. La presenza e l'intensità delle armoniche contribuiscono al timbro dello strumento.\\
+Ad esempio, un violino produce una serie di armoniche più ricche e complesse rispetto a una tromba. Inoltre, il modo in cui le armoniche si evolvono nel tempo (ad esempio, l'attacco e il decadimento del suono) può anche influenzare il timbro.\\
+In sintesi, il timbro è determinato dalla combinazione di frequenza fondamentale, armoniche e dinamica del suono, e ci permette di distinguere tra strumenti diversi anche quando suonano la stessa nota.\\
+
+L'analisi di fourier ci permette di scomporre un suono in componenti di frequenza, e quindi di identificare le armoniche presenti in un suono. Questo ci consente di capire meglio il timbro di uno strumento e di distinguere tra strumenti diversi.\\
+
+\subsection{Mel-spectrogramma}
+Il mel-spectrogramma è una rappresentazione visiva della distribuzione spettrale di un segnale audio, simile allo spettrogramma, ma con una scala di frequenza non lineare chiamata scala mel. La scala mel è progettata per riflettere la percezione umana delle frequenze, in cui le frequenze più basse sono percepite con maggiore precisione rispetto alle frequenze più alte.\\
+Il mel-spectrogramma viene calcolato applicando la trasformata di Fourier al segnale audio, e poi mappando le frequenze risultanti sulla scala mel. Questo processo produce una matrice di valori che rappresentano l'intensità delle frequenze in funzione del tempo, ma con una risoluzione più alta nelle frequenze più basse.\\
+Il mel-spectrogramma è ampiamente utilizzato in applicazioni di riconoscimento vocale, sintesi vocale e analisi musicale, poiché fornisce una rappresentazione più accurata della percezione umana del suono rispetto allo spettrogramma tradizionale.\\
+
+\paragraph{Curve isofoniche}
+Le curve isofoniche sono linee che rappresentano punti di uguale frequenza in un mel-spectrogramma. Queste curve possono essere utilizzate per identificare le frequenze fondamentali e le armoniche presenti in un segnale audio, e per analizzare il timbro di uno strumento musicale.\\
+Sono curve a pari udito, il modo di reagire dell'orecchio umano alle frequenze è diverso a seconda della frequenza stessa, e le curve isofoniche rappresentano questa percezione uditiva.\\
+
+\paragraph{Features audio ottimali}
+
+\paragraph{Mel-scale}
+La scala mel è una scala di frequenza non lineare che riflette la percezione umana delle frequenze. La scala mel è progettata in modo che le frequenze più basse siano percepite con maggiore precisione rispetto alle frequenze più alte.\\
+La scala mel è definita in modo che una differenza di frequenza di 1 mel corrisponda a una differenza di frequenza percepita come uguale da un ascoltatore umano. La formula per convertire una frequenza f in hertz (Hz) alla scala mel è la seguente:
+$$m = 2595 \cdot \log_{10}\left(1 + \frac{f}{700}\right)$$
+$$f = 700 \cdot (10^{\frac{m}{2595}} - 1)$$
+Dove m è la frequenza in mel e f è la frequenza in hertz.\\
+La scala mel è ampiamente utilizzata in applicazioni di riconoscimento vocale, sintesi vocale e analisi musicale, poiché fornisce una rappresentazione più accurata della percezione umana del suono rispetto alla scala di frequenza lineare.\\
+Quindi l'estrazione del mel spectrogramma è un processo che coinvolge la trasformata di Fourier e la mappatura delle frequenze sulla scala mel, e fornisce una rappresentazione più accurata della percezione umana del suono.\\
+
+La prima cosa é il numero di banda mel, che é un iperparametro che puó variare in base al tipo di suono che vogliamo analizzare, ad esempio per la voce umana si possono utilizzare 40 bande mel, mentre per la musica si possono utilizzare 128 bande mel.\\
+Il secondo iperparametro é la dimensione della finestra, che determina la risoluzione temporale del mel-spectrogramma. Una finestra più piccola fornisce una risoluzione temporale più alta, ma può introdurre più rumore, mentre una finestra più grande fornisce una risoluzione temporale più bassa, ma può ridurre il rumore.\\
+Il terzo iperparametro é il passo della finestra, che determina la sovrapposizione tra le finestre temporali. Un passo più piccolo fornisce una maggiore sovrapposizione tra le finestre, ma può aumentare il tempo di calcolo, mentre un passo più grande riduce la sovrapposizione, ma può perdere informazioni importanti.\\
+In sintesi, l'estrazione del mel-spectrogramma coinvolge la scelta di iperparametri come il numero di bande mel, la dimensione della finestra e il passo della finestra, che influenzano la qualità e la precisione della rappresentazione del suono.\\
+
+I banchi di filtri mel sono un insieme di filtri triangolari che vengono applicati alle frequenze risultanti dalla trasformata di Fourier per mappare le frequenze sulla scala mel. Ogni filtro mel è progettato per coprire una specifica gamma di frequenze, e l'intensità di ciascun filtro viene calcolata come la somma ponderata delle frequenze che cadono all'interno della gamma del filtro.\\
+L'uso dei banchi di filtri mel consente di ottenere una rappresentazione più accurata della percezione umana del suono, poiché le frequenze più basse sono rappresentate con una risoluzione più alta rispetto alle frequenze più alte.\\
+Inoltre, i banchi di filtri mel possono essere utilizzati per ridurre la dimensionalità dei dati audio, poiché consentono di rappresentare un segnale audio con un numero ridotto di coefficienti, mantenendo comunque una buona qualità dell'immagine o del suono.\\
+In sintesi, i banchi di filtri mel sono un componente chiave nell'estrazione del mel-spectrogramma, poiché consentono di mappare le frequenze sulla scala mel e di ottenere una rappresentazione più accurata della percezione umana del suono.\\
+
+\paragraph{Mel Frequency Cepstral Coefficients (MFCC)}
+I Mel Frequency Cepstral Coefficients (MFCC) sono un insieme di coefficienti che rappresentano le caratteristiche spettrali di un segnale audio, e sono ampiamente utilizzati in applicazioni di riconoscimento vocale e analisi musicale.\\
+I MFCC vengono calcolati a partire dal mel-spectrogramma, e rappresentano le caratteristiche spettrali del segnale audio in modo più compatto e discriminativo. I MFCC sono ottenuti applicando la trasformata di Fourier al mel-spectrogramma, e poi utilizzando una serie di filtri per estrarre le caratteristiche più rilevanti.\\
+I MFCC sono spesso utilizzati come input per modelli di machine learning, poiché forniscono una rappresentazione più compatta e discriminativa del segnale audio rispetto al mel-spectrogramma originale.\\
+In sintesi, i Mel Frequency Cepstral Coefficients (MFCC) sono un insieme di coefficienti che rappresentano le caratteristiche spettrali di un segnale audio, e sono ampiamente utilizzati in applicazioni di riconoscimento vocale e analisi musicale per fornire una rappresentazione più compatta e discriminativa del segnale audio.\\
